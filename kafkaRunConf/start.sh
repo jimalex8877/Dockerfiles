@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mkdir -p `pwd`/9091/logs
+mkdir -p `pwd`/9091/logs `pwd`/9091/config
 docker run --restart=always -d --name kafka-9091 \
 	--add-host=kafka-9092:192.168.1.103 \
 	--add-host=kafka-9093:192.168.1.103 \
@@ -18,7 +18,7 @@ docker run --restart=always -d --name kafka-9091 \
 	\
 	changmingjiang/kafka:latest
 
-mkdir -p `pwd`/9092/logs
+mkdir -p `pwd`/9092/logs `pwd`/9092/config
 docker run --restart=always -d --name kafka-9092 \
 	--add-host=kafka-9091:192.168.1.103 \
 	--add-host=kafka-9093:192.168.1.103 \
@@ -36,7 +36,7 @@ docker run --restart=always -d --name kafka-9092 \
 	\
 	changmingjiang/kafka:latest
 
-mkdir -p `pwd`/9093/logs
+mkdir -p `pwd`/9093/logs `pwd`/9093/config
 docker run --restart=always -d --name kafka-9093 \
 	--add-host=kafka-9091:192.168.1.103 \
 	--add-host=kafka-9092:192.168.1.103 \

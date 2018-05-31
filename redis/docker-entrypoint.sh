@@ -4,7 +4,7 @@ echo 1024 > /proc/sys/net/core/somaxconn
 echo 'never' > /sys/kernel/mm/transparent_hugepage/enabled
 
 if [ ! -f "/opt/redis/redis.conf" ]; then
-	mv /etc/redis.conf /opt/redis/redis.conf
+	wget -c -O /opt/redis/redis.conf http://download.redis.io/redis-stable/redis.conf
 
 	sed -i "s/daemonize yes/daemonize no/" /opt/redis/redis.conf
 	sed -i "s|dir /var/lib/redis/|dir /opt/redis|" /opt/redis/redis.conf
