@@ -1,0 +1,6 @@
+.idea/
+*.log
+*.pid
+*.rdb
+logs/
+data/

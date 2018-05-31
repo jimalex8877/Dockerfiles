@@ -1,0 +1,77 @@
+systemLog:
+  quiet: false
+  path: "/opt/mongodb/mongodb.log"
+  logAppend: true
+  destination: file
+  timeStampFormat: "iso8601-local"
+processManagement:
+  fork: false
+  pidFilePath: "/opt/mongodb/mongodb.pid"
+net:
+  port: 27017
+  bindIp: 0.0.0.0
+  unixDomainSocket:
+    enabled: true
+    pathPrefix: "/opt/mongodb/data"
+  ssl:
+    mode: "disabled"
+    #PEMKeyFile: <string>
+    #PEMKeyPassword: <string>
+    #clusterFile: <string>
+    #clusterPassword: <string>
+    #CAFile: <string>
+    #CRLFile: <string>
+    #allowConnectionsWithoutCertificates: <boolean>
+    #allowInvalidCertificates: <boolean>
+    #allowInvalidHostnames: <boolean>
+    #disabledProtocols: <string>
+    #FIPSMode: <boolean>
+security:
+  #keyFile: <string>
+  #clusterAuthMode: <string>
+  #authorization: "enabled"
+  #transitionToAuth: <boolean>
+  javascriptEnabled: true
+  #sasl:
+    #hostName: <string>
+    #saslauthdSocketPath: <string>
+storage:
+  dbPath: "/opt/mongodb/data"
+  indexBuildRetry: true
+  #repairPath: <string>
+  journal:
+    enabled: true
+    commitIntervalMs: 100
+  directoryPerDB: false
+  #syncPeriodSecs: 60
+  engine: "wiredTiger"
+  #mmapv1:
+    #preallocDataFiles: <boolean>
+    #nsSize: <int>
+    #quota:
+      #enforced: <boolean>
+      #maxFilesPerDB: <int>
+    #smallFiles: <boolean>
+    #journal:
+      #debugFlags: <int>
+      #commitIntervalMs: <num>
+  wiredTiger:
+    engineConfig:
+      #cacheSizeGB: <number>
+      journalCompressor: "snappy"
+      directoryForIndexes: true
+    collectionConfig:
+      blockCompressor: "snappy"
+    indexConfig:
+      prefixCompression: true
+operationProfiling:
+  slowOpThresholdMs: 100
+  mode: "off"
+replication:
+  #oplogSizeMB: <int>
+  replSetName: "changming"
+  #secondaryIndexPrefetch: <string>
+  #enableMajorityReadConcern: <boolean>
+sharding:
+  #clusterRole: <string>
+  archiveMovedChunks: false
