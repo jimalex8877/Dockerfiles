@@ -11,7 +11,6 @@ docker run --restart=always -d --name rabbitmq \
 	-e ERLANG_COOKIE=NJVHEGOSXXNVRFHCREXL \
 	\
 	-e RABBITMQ_NODE_PORT=5672 \
-	-e MANAGEMENT_LISTENER_PORT=15672 \
 	-e MANAGEMENT_LISTENER_SSL=false \
 	-e RABBIT_USER=rabbitmq \
 	-e RABBIT_USER_PASSWORD=rabbitmq1234 \

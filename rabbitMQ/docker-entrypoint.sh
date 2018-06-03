@@ -1,13 +1,14 @@
 #!/bin/bash
 
-if [ "$ERLANG_COOKIE" ] && [ ! -f "$RABBITMQ_BASE/.erlang.cookie" ]; then
-	echo $ERLANG_COOKIE > $RABBITMQ_BASE/.erlang.cookie
-	unset $ERLANG_COOKIE
-
-	chown -R rabbitmq:rabbitmq $RABBITMQ_BASE
-
-	chmod 400 $RABBITMQ_BASE/.erlang.cookie
+if [ "$ERLANG_COOKIE" ]; then
+    rm -f /var/lib/rabbitmq/.erlang.cookie
+	echo $ERLANG_COOKIE > /var/lib/rabbitmq/.erlang.cookie
+	chmod 400 /var/lib/rabbitmq/.erlang.cookie
+	chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie
+    unset $ERLANG_COOKIE
 fi
+
+chown -R rabbitmq:rabbitmq $RABBITMQ_BASE
 
 #-------------
 
@@ -29,10 +30,6 @@ if [ -z "$(ls -A "$RABBITMQ_MNESIA_BASE")" ]; then
 		gosu rabbitmq rabbitmqctl set_user_tags $RABBIT_USER administrator
 		unset $RABBIT_USER
 		unset $RABBIT_USER_PASSWORD
-	fi
-
-	if [ "$MANAGEMENT_LISTENER_PORT" ]; then
-		sed -i "s|# management.listener.port = 15672|management.listener.port = $MANAGEMENT_LISTENER_PORT|" "$RABBITMQ_CONFIG_FILE.conf"
 	fi
 
 	if [ "$MANAGEMENT_LISTENER_IP" ]; then
@@ -60,4 +57,4 @@ if [ -z "$(ls -A "$RABBITMQ_MNESIA_BASE")" ]; then
 	gosu rabbitmq rabbitmqctl shutdown
 fi
 
-exec "$@"
+exec gosu rabbitmq "$@"
