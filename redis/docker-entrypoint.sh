@@ -1,6 +1,7 @@
 #!/bin/sh
 
 echo 1024 > /proc/sys/net/core/somaxconn
+echo 1 > /proc/sys/vm/overcommit_memory
 echo 'never' > /sys/kernel/mm/transparent_hugepage/enabled
 
 if [ ! -f "/opt/redis/redis.conf" ]; then
