@@ -6,10 +6,11 @@ ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 \
 	PATH=${PATH}:/usr/lib/jvm/java-8-openjdk-amd64/bin
 
 RUN	set -ex; \
+	JAVA_DEBIAN_VERSION=8u171-b11-1~deb9u1; \
 	if [ ! -d /usr/share/man/man1 ]; then \
 		mkdir -p /usr/share/man/man1; \
 	fi; \
 	apt-get update && apt-get install -y --no-install-recommends \
-		openjdk-8-jre-headless xz-utils vim busybox && busybox --install; \
+		openjdk-8-jre-headless="$JAVA_DEBIAN_VERSION" xz-utils vim tcpdump; \
 	rm -rf /var/lib/apt/lists/*; \
 	java -version

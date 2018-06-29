@@ -12,7 +12,7 @@ cloud:
     free:
       state: on
 net:
-  port: 27017
+  port: 37017
   bindIp: 0.0.0.0
   maxIncomingConnections: 65536
   ipv6: false

@@ -1,11 +1,11 @@
-FROM changmingjiang/debian:jessie
+FROM changmingjiang/debian:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
 RUN set -ex; \
-	GPG_KEYS=2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5; \
-	MONGODB_VERSION=3.6; \
-	echo "deb http://mirrors.aliyun.com/mongodb/apt/debian jessie/mongodb-org/$MONGODB_VERSION main" > /etc/apt/sources.list; \
+	GPG_KEYS=9DA31620334BD75D9DCB49F368818C72E52529D4; \
+	MONGODB_VERSION=4.0; \
+	echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/$MONGODB_VERSION main" > /etc/apt/sources.list; \
 	export GNUPGHOME="$(mktemp -d)"; \
 	gpg --keyserver ha.pool.sks-keyservers.net --recv-keys $GPG_KEYS; \
 	gpg --export $GPG_KEYS > /etc/apt/trusted.gpg.d/mongodb.gpg; \
