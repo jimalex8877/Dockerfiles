@@ -6,7 +6,9 @@ ENV PGDATA=/opt/postgres/data \
 	PATH=${PATH}:/usr/lib/postgresql/10/bin/
 
 RUN set -ex; \
+	\
 	PG_VERSION=10.4-2.pgdg90+1; \
+	\
 	echo "deb http://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt/ stretch-pgdg main 10" >> /etc/apt/sources.list; \
 	echo "deb-src http://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt/ stretch-pgdg main 10" >> /etc/apt/sources.list; \
 	\

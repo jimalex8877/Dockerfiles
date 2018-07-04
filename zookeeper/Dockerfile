@@ -3,11 +3,13 @@ FROM changmingjiang/openjdk8-jre:latest
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
 ENV ZOOKEEPER_HOME=/opt/zookeeper \
-	PATH=${PATH}:/opt/zookeeper/bin \
-	ZOOKEEPER_VERSION=3.4.12 \
-	GPG_KEY=586EFEF859AF2DB190D84080BDB2011E173C31A2
+	PATH=${PATH}:/opt/zookeeper/bin
 
 RUN set -ex; \
+	\
+	ZOOKEEPER_VERSION=3.4.12; \
+	GPG_KEY=586EFEF859AF2DB190D84080BDB2011E173C31A2; \
+	\
 	wget "https://mirrors.aliyun.com/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz" \
 		-c -q -O zookeeper.tar.gz; \
 	wget "https://www.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz.asc" \

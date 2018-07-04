@@ -7,10 +7,12 @@ ENV RABBITMQ_HOME=/opt/rabbitmq \
 	RABBITMQ_CONFIG_FILE=/opt/rabbitmq/rabbitmq \
 	RABBITMQ_MNESIA_BASE=/opt/rabbitmq/mnesia \
 	RABBITMQ_ENABLED_PLUGINS_FILE=/opt/rabbitmq/enabled_plugins \
-	RABBITMQ_LOG_BASE=/opt/rabbitmq \
-	RABBITMQ_VERSION=3.7.6-1
+	RABBITMQ_LOG_BASE=/opt/rabbitmq
 
 RUN	set -ex; \
+	\
+	RABBITMQ_VERSION=3.7.6-1; \
+	\
 	echo "deb http://dl.bintray.com/rabbitmq/debian stretch main" >> /etc/apt/sources.list; \
 	echo "deb http://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/debian stretch contrib" >> /etc/apt/sources.list; \
 	\

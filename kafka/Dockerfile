@@ -3,11 +3,13 @@ FROM changmingjiang/openjdk8-jre:latest
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
 ENV KAFKA_HOME=/opt/kafka \
-	PATH=${PATH}:/opt/kafka/bin \
-	KAFKA_VERSION=1.1.0 \
-	SCALA_VERSION=2.12
+	PATH=${PATH}:/opt/kafka/bin
 
 RUN set -ex; \
+	\
+	KAFKA_VERSION=1.1.0; \
+	SCALA_VERSION=2.12; \
+	\
 	wget -q "https://mirrors.aliyun.com/apache/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz" \
 		-c -q -O kafka.tgz; \
 	wget -q "https://www.apache.org/dist/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz.asc" \
