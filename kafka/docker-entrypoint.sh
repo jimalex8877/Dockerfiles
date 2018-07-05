@@ -2,9 +2,7 @@
 
 chown -R kafka:kafka "${KAFKA_HOME}"
 
-if [ ! -d "$KAFKA_HOME/logs" ]; then
-	sed -i "s|log.dirs=/tmp/kafka-logs|log.dirs=$KAFKA_HOME/logs|" "$KAFKA_HOME"/config/server.properties;
-fi
+sed -i "s|log.dirs=/tmp/kafka-logs|log.dirs=$KAFKA_HOME/logs|" "$KAFKA_HOME"/config/server.properties;
 
 if [ "$KAFKA_BROKER_ID" ]; then
 	sed -i "s|broker.id=0|broker.id=$KAFKA_BROKER_ID|" "$KAFKA_HOME"/config/server.properties;

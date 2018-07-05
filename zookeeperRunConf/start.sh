@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+LocaleIp=`ip addr show en0|grep 'inet '|awk '{print $2}'|awk -F/ '{print $1}'`
 thisPath=$(pwd)
 
 mkdir -p $thisPath/2181/data $thisPath/2181/logs
@@ -10,7 +11,7 @@ docker run --restart=always -d --name zookeeper-2181 \
 	-v $thisPath/2181/data:/opt/zookeeper/data \
 	-v $thisPath/2181/logs:/opt/zookeeper/logs \
 	-e ZOOKEEPER_PORT=2181 \
-	-e ZOOKEEPER_SERVERS="server.1=0.0.0.0:3181:4181,server.2=192.168.1.103:3182:4182,server.3=192.168.1.103:3183:4183" \
+	-e ZOOKEEPER_SERVERS="server.1=0.0.0.0:3181:4181,server.2=$LocaleIp:3182:4182,server.3=$LocaleIp:3183:4183" \
 	-e ZOOKEEPER_LOG4J_MAXBACKUPINDEX=20 \
 	-e ZOOKEEPER_LOG4J_DATEFORMAT="yyyy-MM-dd HH:mm:ss" \
 	-e ZOOKEEPER_LOG4J_MAXFILESIZE=100 \
@@ -25,7 +26,7 @@ docker run --restart=always -d --name zookeeper-2182 \
 	-v $thisPath/2182/data:/opt/zookeeper/data \
 	-v $thisPath/2182/logs:/opt/zookeeper/logs \
 	-e ZOOKEEPER_PORT=2182 \
-	-e ZOOKEEPER_SERVERS="server.1=192.168.1.103:3181:4181,server.2=0.0.0.0:3182:4182,server.3=192.168.1.103:3183:4183" \
+	-e ZOOKEEPER_SERVERS="server.1=$LocaleIp:3181:4181,server.2=0.0.0.0:3182:4182,server.3=$LocaleIp:3183:4183" \
 	-e ZOOKEEPER_LOG4J_MAXBACKUPINDEX=20 \
 	-e ZOOKEEPER_LOG4J_DATEFORMAT="yyyy-MM-dd HH:mm:ss" \
 	-e ZOOKEEPER_LOG4J_MAXFILESIZE=100 \
@@ -40,7 +41,7 @@ docker run --restart=always -d --name zookeeper-2183 \
 	-v $thisPath/2183/data:/opt/zookeeper/data \
 	-v $thisPath/2183/logs:/opt/zookeeper/logs \
 	-e ZOOKEEPER_PORT=2183 \
-	-e ZOOKEEPER_SERVERS="server.1=192.168.1.103:3181:4181,server.2=192.168.1.103:3182:4182,server.3=0.0.0.0:3183:4183" \
+	-e ZOOKEEPER_SERVERS="server.1=$LocaleIp:3181:4181,server.2=$LocaleIp:3182:4182,server.3=0.0.0.0:3183:4183" \
 	-e ZOOKEEPER_LOG4J_MAXBACKUPINDEX=20 \
 	-e ZOOKEEPER_LOG4J_DATEFORMAT="yyyy-MM-dd HH:mm:ss" \
 	-e ZOOKEEPER_LOG4J_MAXFILESIZE=100 \

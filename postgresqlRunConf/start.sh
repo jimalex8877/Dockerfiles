@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+LocaleIp=`ip addr show en0|grep 'inet '|awk '{print $2}'|awk -F/ '{print $1}'`
 
 mkdir -p `pwd`/5432/data
 docker run --restart=always --expose 5432 -p 5432:5432 -d --name postgres-5432 \
@@ -24,7 +25,7 @@ docker run --restart=always --expose 5433 -p 5433:5433 -d --name postgres-5433 \
     -e POSTGRES_PORT=5433 \
     -e POSTGRES_PASS='postgres' \
     \
-    -e MASTER_HOST='192.168.1.103' \
+    -e MASTER_HOST="$LocaleIp" \
     -e MASTER_PORT=5432 \
     -e MASTER_REPLICA_USER='replica' \
     -e MASTER_REPLICA_USER_PASS='replica1234' \

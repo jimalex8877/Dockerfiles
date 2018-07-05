@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+LocaleIp=`ip addr show en0|grep 'inet '|awk '{print $2}'|awk -F/ '{print $1}'`
 
 mkdir -p `pwd`/6379
 docker run --restart=always --privileged -d --name redis-6379 \
@@ -16,7 +17,7 @@ docker run --restart=always --privileged -d --name redis-sentinel-26379 \
 	-v `pwd`/6379:/opt/redis \
 	\
 	-e SENTINEL_PORT=26379 \
-	-e SENTINEL_MONITOR_IP=10.2.236.234 \
+	-e SENTINEL_MONITOR_IP=$LocaleIp \
 	-e SENTINEL_MONITOR_PORT=6379 \
 	-e SENTINEL_AUTH_PASS=alex \
 	-e SENTINEL_BIND=0.0.0.0 \
@@ -31,7 +32,7 @@ docker run --restart=always --privileged -d --name redis-6380 \
 	-e REDIS_PORT=6380 \
 	-e REDIS_REQUIRE_PASS=alex \
 	-e REDIS_MASTER_AUTH_PASS=alex \
-	-e REDIS_MASTER_IP=10.2.236.234 \
+	-e REDIS_MASTER_IP=$LocaleIp \
 	-e REDIS_MASTER_PORT=6379 \
 	-e REDIS_BIND=0.0.0.0 \
 	\
@@ -41,7 +42,7 @@ docker run --restart=always --privileged -d --name redis-sentinel-26380 \
 	-v `pwd`/6380:/opt/redis \
 	\
 	-e SENTINEL_PORT=26380 \
-	-e SENTINEL_MONITOR_IP=10.2.236.234 \
+	-e SENTINEL_MONITOR_IP=$LocaleIp \
 	-e SENTINEL_MONITOR_PORT=6380 \
 	-e SENTINEL_AUTH_PASS=alex \
 	-e SENTINEL_BIND=0.0.0.0 \
