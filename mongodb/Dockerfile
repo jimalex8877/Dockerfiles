@@ -6,7 +6,7 @@ RUN set -ex; \
 	\
 	GPG_KEYS=9DA31620334BD75D9DCB49F368818C72E52529D4; \
 	MONGO_MAJOR=4.0; \
-	MONGO_VERSION=4.0.0; \
+	MONGO_VERSION=4.0.2; \
 	\
 	echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list; \
 	export GNUPGHOME="$(mktemp -d)"; \

@@ -2,10 +2,12 @@ FROM changmingjiang/debian:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
+# https://github.com/docker-library/redis/blob/master/4.0/Dockerfile
+
 RUN set -ex; \
 	\
-	REDIS_VERSION=4.0.10; \
-	REDIS_DOWNLOAD_SHA=1db67435a704f8d18aec9b9637b373c34aa233d65b6e174bdac4c1b161f38ca4; \
+	REDIS_VERSION=4.0.11; \
+	REDIS_DOWNLOAD_SHA=fc53e73ae7586bcdacb4b63875d1ff04f68c5474c1ddeda78f00e5ae2eed1bbb; \
 	\
 	buildDeps=' \
 		gcc \

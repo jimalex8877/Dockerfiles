@@ -5,9 +5,11 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 \
 	PATH=${PATH}:/usr/lib/jvm/java-8-openjdk-amd64/bin
 
+# https://packages.debian.org/stretch/armhf/openjdk-8-jre-headless
+
 RUN	set -ex; \
 	\
-	JAVA_DEBIAN_VERSION=8u171-b11-1~deb9u1; \
+	JAVA_DEBIAN_VERSION=8u181-b13-1~deb9u1; \
 	\
 	if [ ! -d /usr/share/man/man1 ]; then \
 		mkdir -p /usr/share/man/man1; \

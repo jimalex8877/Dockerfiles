@@ -7,12 +7,12 @@ ENV PGDATA=/opt/postgres/data \
 
 RUN set -ex; \
 	\
-	PG_VERSION=10.4-2.pgdg90+1; \
+	PG_VERSION=10.5-1.pgdg90+1; \
 	\
-	echo "deb http://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt/ stretch-pgdg main 10" >> /etc/apt/sources.list; \
-	echo "deb-src http://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt/ stretch-pgdg main 10" >> /etc/apt/sources.list; \
+	echo "deb http://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt/ stretch-pgdg main" >> /etc/apt/sources.list; \
+	echo "deb-src http://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt/ stretch-pgdg main" >> /etc/apt/sources.list; \
 	\
-	wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -; \
+	wget --quiet -O - https://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt//ACCC4CF8.asc | apt-key add -; \
 	apt-get update && apt-get install -y postgresql-10="$PG_VERSION" postgresql-common; \
 	rm -rf /var/lib/apt/lists/*; \
 	mkdir -p $PGDATA

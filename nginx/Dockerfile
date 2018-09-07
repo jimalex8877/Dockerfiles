@@ -4,7 +4,7 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
 RUN set -ex; \
 	NGINX_VERSION=1.14.0-1~stretch; \
-	NJS_VERSION=1.14.0.0.2.0-1~stretch; \
+	NJS_VERSION=1.14.0.0.2.3-1~stretch; \
 	nginxPackages=" \
 		nginx=${NGINX_VERSION} \
 		nginx-module-xslt=${NGINX_VERSION} \
