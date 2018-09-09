@@ -28,6 +28,7 @@ if [ -z "$(ls -A "$RABBITMQ_MNESIA_BASE")" ]; then
 	if [ "$RABBIT_USER" ] && [ "$RABBIT_USER_PASSWORD" ]; then
 		gosu rabbitmq rabbitmqctl add_user $RABBIT_USER $RABBIT_USER_PASSWORD
 		gosu rabbitmq rabbitmqctl set_user_tags $RABBIT_USER administrator
+		gosu rabbitmq rabbitmqctl set_permissions -p / $RABBIT_USER '.*' '.*' '.*'
 		unset $RABBIT_USER
 		unset $RABBIT_USER_PASSWORD
 	fi

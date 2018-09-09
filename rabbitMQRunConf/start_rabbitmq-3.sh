@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
 mkdir -p `pwd`/data
-docker run --restart=always -d --name rabbitmq \
-	--hostname=rabbitmq-3 \
-	--add-host=rabbitmq-1:10.2.236.234 \
-	--add-host=rabbitmq-2:10.2.236.234 \
-	-p 4369:4369 -p 5672:5672 -p 15672:15672 -p 25672:25672 \
+docker run --restart=always --net=host -d --name rabbitmq \
+	--add-host=rabbitmq-1:192.168.1.105 \
+	--add-host=rabbitmq-2:192.168.1.106 \
 	-v `pwd`/data:/opt/rabbitmq \
 	\
 	-e ERLANG_COOKIE=NJVHEGOSXXNVRFHCREXL \
@@ -17,4 +15,3 @@ docker run --restart=always -d --name rabbitmq \
 	-e JOIN_CLUSTER_NODE_RAM=rabbit@rabbitmq-1 \
 	\
 	changmingjiang/rabbitmq:latest
-

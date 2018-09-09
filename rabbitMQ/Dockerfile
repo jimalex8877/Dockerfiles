@@ -20,12 +20,8 @@ RUN	set -ex; \
 	wget -q -O - https://packages.erlang-solutions.com/debian/erlang_solutions.asc | apt-key add -; \
 	\
 	apt-get update; \
-	if apt-cache show erlang-base-hipe 2>/dev/null | grep -q 'Package: erlang-base-hipe'; then \
-		apt-get install -y --no-install-recommends \
-			erlang-base-hipe \
-		; \
-	fi; \
 	apt-get install -y --no-install-recommends \
+		erlang-base-hipe \
 		erlang-asn1 \
 		erlang-crypto \
 		erlang-eldap \
@@ -49,7 +45,5 @@ WORKDIR /opt/rabbitmq
 COPY docker-entrypoint.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-
-EXPOSE 4369 5672 15672 25672
 
 CMD ["rabbitmq-server"]
