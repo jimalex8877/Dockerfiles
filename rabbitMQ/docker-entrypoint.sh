@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if [ "$ERLANG_COOKIE" ]; then
-    rm -f /var/lib/rabbitmq/.erlang.cookie
+	rm -f /var/lib/rabbitmq/.erlang.cookie
 	echo $ERLANG_COOKIE > /var/lib/rabbitmq/.erlang.cookie
 	chmod 400 /var/lib/rabbitmq/.erlang.cookie
 	chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie
-    unset $ERLANG_COOKIE
+	unset $ERLANG_COOKIE
 fi
 
 chown -R rabbitmq:rabbitmq $RABBITMQ_BASE
@@ -15,12 +15,6 @@ chown -R rabbitmq:rabbitmq $RABBITMQ_BASE
 if [ -z "$(ls -A "$RABBITMQ_MNESIA_BASE")" ]; then
 
 	cp /etc/rabbitmq/rabbitmq.conf "$RABBITMQ_CONFIG_FILE.conf"
-
-	if [ "$RABBITMQ_NODE_PORT" ]; then
-		sed -i "s|# listeners.tcp.default = 5672|listeners.tcp.default=$RABBITMQ_NODE_PORT|" "$RABBITMQ_CONFIG_FILE.conf"
-		sed -i "s|# listeners.tcp.local    = 127.0.0.1:5672|listeners.tcp.local=127.0.0.1:$RABBITMQ_NODE_PORT|" "$RABBITMQ_CONFIG_FILE.conf"
-		sed -i "s|# listeners.tcp.local_v6 = ::1:5672|listeners.tcp.local_v6 = ::1:$RABBITMQ_NODE_PORT|" "$RABBITMQ_CONFIG_FILE.conf"
-	fi
 
 	gosu rabbitmq rabbitmq-server &
 	gosu rabbitmq rabbitmqctl wait "$RABBITMQ_MNESIA_BASE/rabbit@$HOSTNAME.pid"
