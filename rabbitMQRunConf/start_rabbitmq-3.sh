@@ -9,6 +9,7 @@ docker run --restart=always --net=host -d --name rabbitmq \
 	-e ERLANG_COOKIE=NJVHEGOSXXNVRFHCREXL \
 	\
 	-e MANAGEMENT_LISTENER_SSL=false \
+	-e NET_TICKTIME=120 \
 	-e RABBIT_USER=rabbitmq \
 	-e RABBIT_USER_PASSWORD=rabbitmq1234 \
 	-e JOIN_CLUSTER_NODE_RAM=rabbit@rabbitmq-1 \

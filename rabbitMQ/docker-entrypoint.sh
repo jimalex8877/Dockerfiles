@@ -16,6 +16,10 @@ if [ -z "$(ls -A "$RABBITMQ_MNESIA_BASE")" ]; then
 
 	cp /etc/rabbitmq/rabbitmq.conf "$RABBITMQ_CONFIG_FILE.conf"
 
+	if [ "$NET_TICKTIME" ]; then
+		sed -i "s|# net_ticktime = 60|net_ticktime = $NET_TICKTIME|" "$RABBITMQ_CONFIG_FILE.conf"
+	fi
+
 	gosu rabbitmq rabbitmq-server &
 	gosu rabbitmq rabbitmqctl wait "$RABBITMQ_MNESIA_BASE/rabbit@$HOSTNAME.pid"
 
