@@ -25,7 +25,7 @@ if [ ! -f "/opt/redis/redis.conf" ]; then
 	fi
 
 	if [ "$REDIS_MASTER_IP" ] && [ "$REDIS_MASTER_PORT" ]; then
-		sed -i "s|# slaveof <masterip> <masterport>|slaveof $REDIS_MASTER_IP $REDIS_MASTER_PORT|" /opt/redis/redis.conf
+		sed -i "s|# replicaof <masterip> <masterport>|replicaof $REDIS_MASTER_IP $REDIS_MASTER_PORT|" /opt/redis/redis.conf
 	fi
 
 	if [ "$REDIS_BIND" ]; then
