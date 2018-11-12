@@ -2,7 +2,7 @@ FROM changmingjiang/debian:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
-#https://github.com/docker-library/mongo/blob/master/4.0/Dockerfile
+# https://github.com/docker-library/mongo/blob/master/4.0/Dockerfile
 
 RUN set -ex; \
 	\

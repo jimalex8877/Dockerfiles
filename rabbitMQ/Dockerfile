@@ -9,6 +9,8 @@ ENV RABBITMQ_HOME=/opt/rabbitmq \
 	RABBITMQ_ENABLED_PLUGINS_FILE=/opt/rabbitmq/enabled_plugins \
 	RABBITMQ_LOG_BASE=/opt/rabbitmq
 
+# http://dl.bintray.com/rabbitmq/debian/dists/stretch/main/binary-amd64/Packages
+
 RUN	set -ex; \
 	\
 	RABBITMQ_VERSION=3.7.8-1; \
