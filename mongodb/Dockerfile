@@ -10,7 +10,7 @@ RUN set -ex; \
 	MONGO_MAJOR=4.0; \
 	MONGO_VERSION=4.0.4; \
 	\
-	echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list; \
+	echo "deb http://mirrors.aliyun.com/mongodb/apt/debian stretch/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list; \
 	export GNUPGHOME="$(mktemp -d)"; \
 	gpg --keyserver keyserver.ubuntu.com --recv-keys $GPG_KEYS; \
 	gpg --export $GPG_KEYS > /etc/apt/trusted.gpg.d/mongodb.gpg; \
