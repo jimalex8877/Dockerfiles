@@ -7,7 +7,7 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 ENV PG_MAJOR=11 \
 	PG_VERSION=11.1-1.pgdg90+1 \
 	PGDATA=/opt/postgres/data \
-	PATH=$PATH:/usr/lib/postgresql/$PG_MAJOR/bin/
+	PATH=$PATH:/usr/lib/postgresql/11/bin/
 
 RUN set -ex; \
 	\
