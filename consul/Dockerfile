@@ -2,6 +2,9 @@ FROM changmingjiang/debian:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
+ENV  CONSUL_DATA_DIR=/opt/consul/data \
+     CONSUL_CONFIG_DIR=/opt/consul/config
+
 RUN set -ex; \
 	\
 	CONSUL_VERSION=1.4.0; \

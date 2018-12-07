@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 docker pull changmingjiang/debian:latest
 
-docker pull changmingjiang/redis:5.0.1
+docker pull changmingjiang/redis:5.0.2
 
-docker pull changmingjiang/redis-sentinel:5.0.1
+docker pull changmingjiang/redis-sentinel:5.0.2
 
 docker pull changmingjiang/openjdk8-jre:latest
 

@@ -2,10 +2,10 @@
 docker push changmingjiang/debian:latest
 
 docker push changmingjiang/redis:latest
-docker push changmingjiang/redis:5.0.1
+docker push changmingjiang/redis:5.0.2
 
 docker push changmingjiang/redis-sentinel:latest
-docker push changmingjiang/redis-sentinel:5.0.1
+docker push changmingjiang/redis-sentinel:5.0.2
 
 #docker push changmingjiang/idea-license-server:latest
 

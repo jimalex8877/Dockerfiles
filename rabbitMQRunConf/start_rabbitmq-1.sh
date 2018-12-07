@@ -2,6 +2,7 @@
 
 mkdir -p `pwd`/data
 docker run --restart=always --net=host -d --name rabbitmq \
+	--hostname=rabbitmq-1 \
 	--add-host=rabbitmq-2:192.168.1.106 \
 	--add-host=rabbitmq-3:192.168.1.107 \
 	-v `pwd`/data:/opt/rabbitmq \
