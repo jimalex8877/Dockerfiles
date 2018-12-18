@@ -5,8 +5,8 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 # https://github.com/nginxinc/docker-nginx/blob/master/stable/stretch/Dockerfile
 
 RUN set -ex; \
-	NGINX_VERSION=1.14.1-1~stretch; \
-	NJS_VERSION=1.14.1.0.2.5-1~stretch; \
+	NGINX_VERSION=1.14.2-1~stretch; \
+	NJS_VERSION=1.14.2.0.2.6-1~stretch; \
 	nginxPackages=" \
 		nginx=${NGINX_VERSION} \
 		nginx-module-xslt=${NGINX_VERSION} \

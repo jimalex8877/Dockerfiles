@@ -5,9 +5,11 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 ENV KAFKA_HOME=/opt/kafka \
 	PATH=${PATH}:/opt/kafka/bin
 
+# https://mirrors.aliyun.com/apache/kafka/
+
 RUN set -ex; \
 	\
-	KAFKA_VERSION=1.1.0; \
+	KAFKA_VERSION=2.1.0; \
 	SCALA_VERSION=2.12; \
 	\
 	wget -q "https://mirrors.aliyun.com/apache/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz" \
@@ -16,7 +18,7 @@ RUN set -ex; \
 		-c -q -O kafka.tgz.asc; \
 	wget "https://www.apache.org/dist/kafka/KEYS" -c -q; \
 	export GNUPGHOME="$(mktemp -d)"; \
-	gpg --import KEYS; \
+	gpg --no-tty --import KEYS; \
 	gpg --batch --verify kafka.tgz.asc kafka.tgz; \
 	tar -xzf kafka.tgz; \
 	mkdir -p $KAFKA_HOME/logs/; \

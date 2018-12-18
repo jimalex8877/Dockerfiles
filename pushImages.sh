@@ -2,10 +2,10 @@
 docker push changmingjiang/debian:latest
 
 docker push changmingjiang/redis:latest
-docker push changmingjiang/redis:5.0.2
+docker push changmingjiang/redis:5.0.3
 
 docker push changmingjiang/redis-sentinel:latest
-docker push changmingjiang/redis-sentinel:5.0.2
+docker push changmingjiang/redis-sentinel:5.0.3
 
 #docker push changmingjiang/idea-license-server:latest
 
@@ -21,7 +21,7 @@ docker push changmingjiang/rabbitmq:latest
 docker push changmingjiang/rabbitmq:3.7.9
 
 docker push changmingjiang/nginx:latest
-docker push changmingjiang/nginx:1.14.1
+docker push changmingjiang/nginx:1.14.2
 
 #docker push changmingjiang/zookeeper:latest
 #docker push changmingjiang/kafka:latest

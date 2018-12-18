@@ -6,8 +6,8 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
 RUN set -ex; \
 	\
-	REDIS_VERSION=5.0.2; \
-	REDIS_DOWNLOAD_SHA=937dde6164001c083e87316aa20dad2f8542af089dfcb1cbb64f9c8300cd00ed; \
+	REDIS_VERSION=5.0.3; \
+	REDIS_DOWNLOAD_SHA=e290b4ddf817b26254a74d5d564095b11f9cd20d8f165459efa53eb63cd93e02; \
 	\
 	buildDeps=' \
 		gcc \

@@ -5,11 +5,11 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 \
 	PATH=${PATH}:/usr/lib/jvm/java-11-openjdk-amd64/bin
 
-# https://packages.debian.org/stretch-backports/openjdk-11-jdk-headless
+# https://packages.debian.org/stretch-backports/openjdk-11-jre-headless
 
 RUN	set -ex; \
 	\
-	JAVA_DEBIAN_VERSION=9.0.4+12-4~bpo9+1; \
+	JAVA_DEBIAN_VERSION=11.0.1+13-2~bpo9+1; \
 	\
 	if [ ! -d /usr/share/man/man1 ]; then \
 		mkdir -p /usr/share/man/man1; \

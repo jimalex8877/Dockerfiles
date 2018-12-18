@@ -15,7 +15,7 @@ RUN set -ex; \
 		-c -q -O zookeeper.tar.gz.asc; \
 	wget "https://www.apache.org/dist/zookeeper/KEYS" -c -q; \
 	export GNUPGHOME="$(mktemp -d)"; \
-	gpg --import KEYS; \
+	gpg --no-tty --import KEYS; \
 	gpg --batch --verify zookeeper.tar.gz.asc zookeeper.tar.gz; \
 	tar -xzf zookeeper.tar.gz; \
 	mkdir -p $ZOOKEEPER_HOME/data/ $ZOOKEEPER_HOME/logs/; \
