@@ -11,13 +11,13 @@ docker push changmingjiang/openjdk8-jre:latest
 docker push changmingjiang/openjdk11-jre:latest
 
 docker push changmingjiang/mongodb:latest
-docker push changmingjiang/mongodb:4.0.4
+docker push changmingjiang/mongodb:4.0.6
 
 docker push changmingjiang/postgres:latest
 docker push changmingjiang/postgres:11
 
 docker push changmingjiang/rabbitmq:latest
-docker push changmingjiang/rabbitmq:3.7.9
+docker push changmingjiang/rabbitmq:3.7.11
 
 docker push changmingjiang/nginx:latest
 docker push changmingjiang/nginx:1.14.2
