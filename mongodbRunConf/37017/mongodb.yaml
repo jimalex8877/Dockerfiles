@@ -23,8 +23,8 @@ net:
   ssl:
     mode: "disabled"
 security:
-  authorization: "enabled"
-  keyFile: "/opt/mongodb/replSet.key"
+  authorization: "disabled"
+  #keyFile: "/opt/mongodb/replSet.key"
   javascriptEnabled: true
 storage:
   dbPath: "/opt/mongodb/data"
