@@ -5,7 +5,7 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 \
 	PATH=${PATH}:/usr/lib/jvm/java-8-openjdk-amd64/bin
 
-# https://packages.debian.org/stretch/openjdk-8-jre-headless
+# https://packages.debian.org/stretch/openjdk-8-jdk
 
 RUN	set -ex; \
 	\
@@ -15,6 +15,6 @@ RUN	set -ex; \
 		mkdir -p /usr/share/man/man1; \
 	fi; \
 	apt-get update && apt-get install -y --no-install-recommends \
-		openjdk-8-jre-headless="$JAVA_DEBIAN_VERSION" bzip2 unzip xz-utils vim tcpdump; \
+		openjdk-8-jdk="$JAVA_DEBIAN_VERSION" bzip2 unzip xz-utils; \
 	rm -rf /var/lib/apt/lists/*; \
 	java -version

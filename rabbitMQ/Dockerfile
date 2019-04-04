@@ -13,13 +13,18 @@ ENV RABBITMQ_HOME=/opt/rabbitmq \
 
 RUN	set -ex; \
 	\
-	RABBITMQ_VERSION=3.7.11-1; \
+	RABBITMQ_VERSION=3.7.13-1; \
 	\
 	echo "deb http://dl.bintray.com/rabbitmq/debian stretch main" >> /etc/apt/sources.list; \
 	echo "deb http://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/debian stretch contrib" >> /etc/apt/sources.list; \
 	\
 	wget -q -O - https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | apt-key add -; \
 	wget -q -O - https://packages.erlang-solutions.com/debian/erlang_solutions.asc | apt-key add -; \
+	\
+	mkdir -p $RABBITMQ_MNESIA_BASE $RABBITMQ_ENABLED_PLUGINS_FILE /etc/rabbitmq/; \
+	\
+	wget "https://raw.githubusercontent.com/rabbitmq/rabbitmq-server/master/docs/rabbitmq.conf.example" \
+		-c -O "/etc/rabbitmq/rabbitmq.conf"; \
 	\
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
@@ -35,12 +40,9 @@ RUN	set -ex; \
 		erlang-ssl \
 		erlang-xmerl \
 	; \
-	apt-get install -y rabbitmq-server=$RABBITMQ_VERSION && rm -rf /var/lib/apt/lists/*; \
-	\
-	mkdir -p $RABBITMQ_MNESIA_BASE $RABBITMQ_ENABLED_PLUGINS_FILE; \
-	\
-	wget -e "https_proxy=${HTTPS_PROXY}" "https://raw.githubusercontent.com/rabbitmq/rabbitmq-server/master/docs/rabbitmq.conf.example" \
-		-c -O "/etc/rabbitmq/rabbitmq.conf"
+	apt-get install -y rabbitmq-server=$RABBITMQ_VERSION; \
+	rm -rf /var/lib/apt/lists/*
+
 
 WORKDIR /opt/rabbitmq
 

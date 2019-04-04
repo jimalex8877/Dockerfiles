@@ -6,8 +6,8 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
 RUN set -ex; \
 	\
-	REDIS_VERSION=5.0.3; \
-	REDIS_DOWNLOAD_SHA=e290b4ddf817b26254a74d5d564095b11f9cd20d8f165459efa53eb63cd93e02; \
+	REDIS_VERSION=5.0.4; \
+	REDIS_DOWNLOAD_SHA=3ce9ceff5a23f60913e1573f6dfcd4aa53b42d4a2789e28fa53ec2bd28c987dd; \
 	\
 	buildDeps=' \
 		gcc \
@@ -18,7 +18,7 @@ RUN set -ex; \
 	apt-get install -y $buildDeps --no-install-recommends; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
-	wget -e "https_proxy=${HTTPS_PROXY}" -O redis.tar.gz "http://download.redis.io/releases/redis-$REDIS_VERSION.tar.gz"; \
+	wget -e "https_proxy=${HTTPS_PROXY}" -c -q -O redis.tar.gz "http://download.redis.io/releases/redis-$REDIS_VERSION.tar.gz"; \
 	echo "$REDIS_DOWNLOAD_SHA *redis.tar.gz" | sha256sum -c -; \
 	mkdir -p /usr/src/redis; \
 	tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1; \
