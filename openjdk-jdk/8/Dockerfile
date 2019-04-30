@@ -9,7 +9,7 @@ ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 \
 
 RUN	set -ex; \
 	\
-	JAVA_DEBIAN_VERSION=8u181-b13-2~deb9u1; \
+	JAVA_DEBIAN_VERSION=8u212-b01-1~deb9u1; \
 	\
 	if [ ! -d /usr/share/man/man1 ]; then \
 		mkdir -p /usr/share/man/man1; \
