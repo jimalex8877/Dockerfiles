@@ -3,8 +3,8 @@
 mkdir -p `pwd`/data
 docker run --restart=always --net=host -d --name rabbitmq \
 	--hostname=rabbitmq-2 \
-	--add-host=rabbitmq-1:192.168.1.105 \
-	--add-host=rabbitmq-3:192.168.1.107 \
+	--add-host=rabbitmq-1:10.2.239.174 \
+	--add-host=rabbitmq-3:10.2.239.190 \
 	-v `pwd`/data:/opt/rabbitmq \
 	\
 	-e ERLANG_COOKIE=NJVHEGOSXXNVRFHCREXL \

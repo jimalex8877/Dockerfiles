@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-docker build rabbitMQ/ --build-arg "HTTPS_PROXY=http://10.2.236.140:1087" -t changmingjiang/rabbitmq:latest
+docker build rabbitMQ/ -t changmingjiang/rabbitmq:latest
 
-docker tag changmingjiang/rabbitmq:latest changmingjiang/rabbitmq:3.7.13
+docker tag changmingjiang/rabbitmq:latest changmingjiang/rabbitmq:3.7.14
