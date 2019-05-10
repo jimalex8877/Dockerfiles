@@ -15,6 +15,6 @@ RUN	set -ex; \
 		mkdir -p /usr/share/man/man1; \
 	fi; \
 	apt-get update && apt-get install -y --no-install-recommends \
-		openjdk-8-jre-headless="$JAVA_DEBIAN_VERSION" bzip2 unzip xz-utils vim tcpdump; \
+		openjdk-8-jre-headless="$JAVA_DEBIAN_VERSION" bzip2 unzip xz-utils tcpdump; \
 	rm -rf /var/lib/apt/lists/*; \
 	java -version

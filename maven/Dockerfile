@@ -8,8 +8,8 @@ ENV MAVEN_HOME=/opt/maven \
 
 RUN set -ex; \
 	\
-	MAVEN_VERSION=3.6.0; \
-	SHA=fae9c12b570c3ba18116a4e26ea524b29f7279c17cbaadc3326ca72927368924d9131d11b9e851b8dc9162228b6fdea955446be41207a5cfc61283dd8a561d2f; \
+	MAVEN_VERSION=3.6.1; \
+	SHA=b4880fb7a3d81edd190a029440cdf17f308621af68475a4fe976296e71ff4a4b546dd6d8a58aaafba334d309cc11e638c52808a4b0e818fc0fd544226d952544; \
 	BASE_URL=https://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/${MAVEN_VERSION}/binaries/; \
 	\
 	mkdir -p $MAVEN_CONFIG $MAVEN_HOME/ref; \
@@ -21,10 +21,6 @@ RUN set -ex; \
 	\
 	rm -rf /tmp/apache-maven.tar.gz /var/lib/apt/lists/*
 
-COPY docker-entrypoint.sh /
-
 COPY settings-docker.xml /opt/maven/conf/settings.xml
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
-
-CMD ["mvn"]
+CMD ["mvn", "-h"]

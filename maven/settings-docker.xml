@@ -3,25 +3,25 @@
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
                       https://maven.apache.org/xsd/settings-1.0.0.xsd">
 
-    <localRepository>.m2/repository/</localRepository>
+    <localRepository>~/.m2/repository/</localRepository>
 
     <servers>
         <server>
-            <id>gf-deploy-releases</id>
+            <id>deploy-releases</id>
             <username>admin</username>
-            <password></password>
+            <password>${MAVEN_ADMIN_PASSWORD}</password>
         </server>
         <server>
-            <id>gf-deploy-snapshots</id>
+            <id>deploy-snapshots</id>
             <username>admin</username>
-            <password></password>
+            <password>${MAVEN_ADMIN_PASSWORD}</password>
         </server>
     </servers>
 
     <mirrors>
         <mirror>
-            <id>gf-nexus-central</id>
-            <url>http://10.2.68.180:8080/nexus/content/groups/public</url>
+            <id>nexus-central</id>
+            <url>http://10.2.239.216:8081/repository/maven-releases/</url>
             <mirrorOf>central</mirrorOf>
         </mirror>
     </mirrors>
@@ -31,8 +31,8 @@
             <id>build-private-repository</id>
             <repositories>
                 <repository>
-                    <id>gf-build-snapshots</id>
-                    <url>http://10.2.68.180:8080/nexus/content/groups/public-snapshots</url>
+                    <id>build-snapshots</id>
+                    <url>http://10.2.239.216:8081/repository/maven-snapshots/</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
@@ -41,8 +41,8 @@
                     </releases>
                 </repository>
                 <repository>
-                    <id>gf-build-releases</id>
-                    <url>http://10.2.68.180:8080/nexus/content/groups/public</url>
+                    <id>build-releases</id>
+                    <url>http://10.2.239.216:8081/repository/maven-releases/</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
@@ -53,8 +53,8 @@
             </repositories>
             <pluginRepositories>
                 <pluginRepository>
-                    <id>gf-plugin-release</id>
-                    <url>http://10.2.68.180:8080/nexus/content/groups/public/</url>
+                    <id>plugin-release</id>
+                    <url>http://10.2.239.216:8081/repository/maven-releases/</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
@@ -63,8 +63,8 @@
                     </snapshots>
                 </pluginRepository>
                 <pluginRepository>
-                    <id>gf-plugin-snapshots</id>
-                    <url>http://10.2.68.180:8080/nexus/content/groups/public-snapshots/</url>
+                    <id>plugin-snapshots</id>
+                    <url>http://10.2.239.216:8081/repository/maven-snapshots/</url>
                     <releases>
                         <enabled>false</enabled>
                     </releases>
