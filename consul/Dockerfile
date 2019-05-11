@@ -21,7 +21,7 @@ RUN set -ex; \
 	wget -e "https_proxy=${HTTPS_PROXY}" -c -q "https://releases.hashicorp.com/consul/$CONSUL_VERSION/consul_${CONSUL_VERSION}_SHA256SUMS.sig"; \
 	\
 	export GNUPGHOME="$(mktemp -d)"; \
-	gpg --no-tty --keyserver keyserver.ubuntu.com --recv-keys $CONSUL_GPG_KEYS; \
+	gpg  --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $CONSUL_GPG_KEYS; \
 	gpg --export $CONSUL_GPG_KEYS > /etc/apt/trusted.gpg.d/consul.gpg; \
 	gpg --batch --verify consul_${CONSUL_VERSION}_SHA256SUMS.sig consul_${CONSUL_VERSION}_SHA256SUMS; \
 	grep consul_${CONSUL_VERSION}_linux_amd64.zip consul_${CONSUL_VERSION}_SHA256SUMS | sha256sum -c; \

@@ -12,7 +12,7 @@ RUN set -ex; \
 	\
 	echo "deb http://mirrors.aliyun.com/mongodb/apt/debian stretch/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list; \
 	export GNUPGHOME="$(mktemp -d)"; \
-	gpg --keyserver keyserver.ubuntu.com --recv-keys $GPG_KEYS; \
+	gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $GPG_KEYS; \
 	gpg --export $GPG_KEYS > /etc/apt/trusted.gpg.d/mongodb.gpg; \
 	rm -r "$GNUPGHOME"; \
 	\

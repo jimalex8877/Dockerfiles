@@ -74,7 +74,7 @@ RUN buildDeps=' \
 	wget -c -q -O nginx-statsd-master.zip "https://github.com/zebrafishlabs/nginx-statsd/archive/master.zip"; \
 	\
 	export GNUPGHOME="$(mktemp -d)"; \
-	gpg --keyserver keyserver.ubuntu.com --recv-keys "$OPENRESTY_GPG_KEY"; \
+	gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$OPENRESTY_GPG_KEY"; \
 	gpg --batch --verify openresty.tar.gz.asc openresty.tar.gz; \
 	rm -rf "$GNUPGHOME"; \
 	\
