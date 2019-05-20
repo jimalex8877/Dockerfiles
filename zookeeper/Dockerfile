@@ -7,7 +7,7 @@ ENV ZOOKEEPER_HOME=/opt/zookeeper \
 
 RUN set -ex; \
 	\
-	ZOOKEEPER_VERSION=3.4.13; \
+	ZOOKEEPER_VERSION=3.4.14; \
 	\
 	wget "https://mirrors.aliyun.com/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz" \
 		-c -q -O zookeeper.tar.gz; \
