@@ -18,7 +18,7 @@ RUN set -ex; \
 	echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ stretch-backports main contrib non-free" >> /etc/apt/sources.list; \
 	echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian-security stretch/updates main contrib non-free" >> /etc/apt/sources.list; \
 	\
-	apt update && apt upgrade -y && apt install -y locales wget curl gnupg gosu; \
+	apt update && apt install -y locales wget curl gnupg gosu; \
 	echo $LANG > /usr/share/locale/locale.alias; \
 	localedef -i zh_CN -c -f UTF-8 -A /usr/share/locale/locale.alias $LANG; \
 	echo "Asia/Shanghai" > /etc/timezone && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime; \
