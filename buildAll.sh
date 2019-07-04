@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 sh buildDebianBase.sh
-sh buildIdeaLicenseServer.sh
+sh buildConsul.sh
 sh buildOpenjdk-jre.sh
+sh buildOpenjdk-jdk.sh
 sh buildMongodb.sh
 sh buildPostgres.sh
 sh buildRedisOrSentinel.sh
@@ -9,3 +10,4 @@ sh buildRabbitMQ.sh
 sh buildZookeeper.sh
 sh buildKafka.sh
 sh buildNginx.sh
+sh buildNexus.sh

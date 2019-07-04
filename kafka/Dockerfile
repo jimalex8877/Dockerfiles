@@ -9,7 +9,7 @@ ENV KAFKA_HOME=/opt/kafka \
 
 RUN set -ex; \
 	\
-	KAFKA_VERSION=2.2.0; \
+	KAFKA_VERSION=2.3.0; \
 	SCALA_VERSION=2.12; \
 	\
 	wget -q "https://mirrors.aliyun.com/apache/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz" \

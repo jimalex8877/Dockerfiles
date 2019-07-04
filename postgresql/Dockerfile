@@ -5,7 +5,7 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 # https://github.com/docker-library/postgres/blob/master/11/Dockerfile
 
 ENV PG_MAJOR=11 \
-	PG_VERSION=11.3-1.pgdg90+1 \
+	PG_VERSION=11.4-1.pgdg90+1 \
 	PGDATA=/opt/postgres/data \
 	PATH=$PATH:/usr/lib/postgresql/11/bin/
 

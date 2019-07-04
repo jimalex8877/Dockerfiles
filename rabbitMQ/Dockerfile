@@ -13,7 +13,7 @@ ENV RABBITMQ_HOME=/opt/rabbitmq \
 
 RUN	set -ex; \
 	\
-	RABBITMQ_VERSION=3.7.14-1; \
+	RABBITMQ_VERSION=3.7.15-1; \
 	\
 	echo "deb http://dl.bintray.com/rabbitmq/debian stretch main" >> /etc/apt/sources.list; \
 	echo "deb http://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/debian stretch contrib" >> /etc/apt/sources.list; \
@@ -23,7 +23,7 @@ RUN	set -ex; \
 	\
 	mkdir -p $RABBITMQ_MNESIA_BASE $RABBITMQ_ENABLED_PLUGINS_FILE /etc/rabbitmq/; \
 	\
-	wget "https://raw.githubusercontent.com/rabbitmq/rabbitmq-server/master/docs/rabbitmq.conf.example" \
+	wget -e "https_proxy=${HTTPS_PROXY}" "https://raw.githubusercontent.com/rabbitmq/rabbitmq-server/master/docs/rabbitmq.conf.example" \
 		-q -c -O "/etc/rabbitmq/rabbitmq.conf"; \
 	\
 	apt-get update; \
