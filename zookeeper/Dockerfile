@@ -1,4 +1,4 @@
-FROM changmingjiang/openjdk8-jre:latest
+FROM changmingjiang/openjdk11-jre:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
@@ -11,18 +11,18 @@ RUN set -ex; \
 	\
 	ZOOKEEPER_VERSION=3.5.5; \
 	\
-	wget "https://mirrors.aliyun.com/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz" \
-		-c -q -O zookeeper.tar.gz; \
-	wget "https://www.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz.asc" \
-		-c -q -O zookeeper.tar.gz.asc; \
+	wget "https://mirrors.aliyun.com/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/apache-zookeeper-$ZOOKEEPER_VERSION-bin.tar.gz" \
+		-c -q -O zookeeper-bin.tar.gz; \
+	wget "https://www.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_VERSION/apache-zookeeper-$ZOOKEEPER_VERSION-bin.tar.gz.asc" \
+		-c -q -O zookeeper-bin.tar.gz.asc; \
 	wget "https://www.apache.org/dist/zookeeper/KEYS" -c -q; \
 	export GNUPGHOME="$(mktemp -d)"; \
 	gpg --no-tty --import KEYS; \
-	gpg --batch --verify zookeeper.tar.gz.asc zookeeper.tar.gz; \
-	tar -xzf zookeeper.tar.gz; \
+	gpg --batch --verify zookeeper-bin.tar.gz.asc zookeeper-bin.tar.gz; \
+	tar -xzf zookeeper-bin.tar.gz; \
 	mkdir -p $ZOOKEEPER_HOME/data/ $ZOOKEEPER_HOME/logs/; \
-    mv "zookeeper-$ZOOKEEPER_VERSION/"* "$ZOOKEEPER_HOME"; \
-	rm -rf $GNUPGHOME zookeeper.tar.gz zookeeper.tar.gz.asc KEYS; \
+    mv "apache-zookeeper-$ZOOKEEPER_VERSION-bin/"* "$ZOOKEEPER_HOME"; \
+	rm -rf $GNUPGHOME zookeeper-bin.tar.gz zookeeper-bin.tar.gz.asc KEYS; \
 	groupadd -r zookeeper && useradd -r -g zookeeper zookeeper
 
 WORKDIR /opt/zookeeper

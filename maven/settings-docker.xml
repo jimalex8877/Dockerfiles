@@ -9,19 +9,19 @@
         <server>
             <id>deploy-releases</id>
             <username>admin</username>
-            <password>${MAVEN_ADMIN_PASSWORD}</password>
+            <password></password>
         </server>
         <server>
             <id>deploy-snapshots</id>
             <username>admin</username>
-            <password>${MAVEN_ADMIN_PASSWORD}</password>
+            <password></password>
         </server>
     </servers>
 
     <mirrors>
         <mirror>
             <id>nexus-central</id>
-            <url>http://10.2.239.216:8081/repository/maven-releases/</url>
+            <url>http://10.2.239.216:8081/repository/maven-public/</url>
             <mirrorOf>central</mirrorOf>
         </mirror>
     </mirrors>
@@ -32,7 +32,7 @@
             <repositories>
                 <repository>
                     <id>build-snapshots</id>
-                    <url>http://10.2.239.216:8081/repository/maven-snapshots/</url>
+                    <url>http://10.2.239.216:8081/repository/maven-public-snapshots/</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
@@ -42,7 +42,7 @@
                 </repository>
                 <repository>
                     <id>build-releases</id>
-                    <url>http://10.2.239.216:8081/repository/maven-releases/</url>
+                    <url>http://10.2.239.216:8081/repository/maven-public/</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
@@ -54,7 +54,7 @@
             <pluginRepositories>
                 <pluginRepository>
                     <id>plugin-release</id>
-                    <url>http://10.2.239.216:8081/repository/maven-releases/</url>
+                    <url>http://10.2.239.216:8081/repository/maven-public/</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
@@ -64,7 +64,7 @@
                 </pluginRepository>
                 <pluginRepository>
                     <id>plugin-snapshots</id>
-                    <url>http://10.2.239.216:8081/repository/maven-snapshots/</url>
+                    <url>http://10.2.239.216:8081/repository/maven-public-snapshots/</url>
                     <releases>
                         <enabled>false</enabled>
                     </releases>

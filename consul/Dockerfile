@@ -1,4 +1,4 @@
-FROM changmingjiang/debian:latest
+FROM changmingjiang/debian:buster
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
@@ -9,7 +9,7 @@ ENV  CONSUL_DATA_DIR=/opt/consul/data \
 
 RUN set -ex; \
 	\
-	CONSUL_VERSION=1.5.2; \
+	CONSUL_VERSION=1.6.0-beta1; \
 	CONSUL_GPG_KEYS=91A6E7F85D05C65630BEF18951852D87348FFC4C; \
 	\
 	apt-get update; \

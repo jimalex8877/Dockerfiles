@@ -1,4 +1,4 @@
-FROM changmingjiang/openjdk8-jre:latest
+FROM changmingjiang/openjdk11-jre:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
@@ -32,4 +32,4 @@ COPY docker-entrypoint.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD ["kafka-server-start.sh", "/opt/kafka/config/server.properties"]
+CMD ["kafka-server-start.sh", "config/server.properties"]
