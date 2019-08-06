@@ -1,4 +1,4 @@
 #!/bin/sh
-chown -R openresty:openresty /usr/local/openresty
+chown -R openresty:openresty /opt/openresty
 
 exec gosu openresty "$@"

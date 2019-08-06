@@ -13,7 +13,7 @@ ENV RABBITMQ_HOME=/opt/rabbitmq \
 
 RUN	set -ex; \
 	\
-	RABBITMQ_VERSION=3.7.16-1; \
+	RABBITMQ_VERSION=3.7.17-1; \
 	\
 	echo "deb http://dl.bintray.com/rabbitmq/debian stretch main" >> /etc/apt/sources.list; \
 	echo "deb http://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/debian stretch contrib" >> /etc/apt/sources.list; \

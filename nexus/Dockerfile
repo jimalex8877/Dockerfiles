@@ -10,9 +10,9 @@ ENV SONATYPE_DIR=/opt/sonatype \
 
 RUN set -ex; \
 	\
-	NEXUS_VERSION=3.17.0-01; \
+	NEXUS_VERSION=3.18.0-01; \
 	NEXUS_DOWNLOAD_URL=https://sonatype-download.global.ssl.fastly.net/repository/repositoryManager/3/nexus-${NEXUS_VERSION}-unix.tar.gz; \
-	NEXUS_DOWNLOAD_SHA256_HASH=15c452a0380e7aefd17c3596b3357be3f4e85bf2074a53abd79e12f3bc304150; \
+	NEXUS_DOWNLOAD_SHA256_HASH=e1d9d84d8b169b2f6c735e7db35e3310cf9e242da12b4af83da4e3618acfc99e; \
 	\
 	mkdir -p "${SONATYPE_DIR}" "${NEXUS_DATA}"; \
 	wget -e "https_proxy=${HTTPS_PROXY}" -c -q -O nexus.tar.gz $NEXUS_DOWNLOAD_URL; \

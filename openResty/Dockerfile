@@ -3,8 +3,8 @@ FROM changmingjiang/debian:latest
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
 ENV OPENRESTY_HOME=/usr/local/openresty/nginx \
-	PATH=$PATH:/usr/local/openresty/nginx/sbin \
-	OPENRESTY_VERSION=1.13.6.1 \
+	PATH=$PATH:/usr/local/openresty/bin \
+	OPENRESTY_VERSION=1.15.8.1 \
 	OPENRESTY_GPG_KEY=B550E09EA0E98066
 
 RUN buildDeps=' \
@@ -34,7 +34,6 @@ RUN buildDeps=' \
 	'; \
 	configureDeps=' \
 		--with-luajit \
-		--add-module=/opt/nginx-statsd-master/ \
 		--with-file-aio \
 		--with-http_addition_module \
 		--with-http_auth_request_module \
@@ -71,7 +70,6 @@ RUN buildDeps=' \
 	\
 	wget -c -q -O openresty.tar.gz.asc    "https://openresty.org/download/openresty-$OPENRESTY_VERSION.tar.gz.asc"; \
 	wget -c -q -O openresty.tar.gz        "https://openresty.org/download/openresty-$OPENRESTY_VERSION.tar.gz"; \
-	wget -c -q -O nginx-statsd-master.zip "https://github.com/zebrafishlabs/nginx-statsd/archive/master.zip"; \
 	\
 	export GNUPGHOME="$(mktemp -d)"; \
 	gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$OPENRESTY_GPG_KEY"; \
@@ -80,7 +78,6 @@ RUN buildDeps=' \
 	\
 	mkdir -p /opt/openresty/; \
 	tar -xzf openresty.tar.gz -C /opt/openresty/ --strip-components=1; \
-	unzip nginx-statsd-master.zip -d /opt; \
 	\
 	cd /opt/openresty/; \
 	cpuNum="$(nproc)"; \
@@ -88,18 +85,9 @@ RUN buildDeps=' \
 	make -j $cpuNum; \
 	make install; \
 	\
-	cd / && rm -rf /var/lib/apt/lists/* openresty.tar.gz* nginx-statsd-master.zip /opt/openresty/; \
-	apt-get purge -y --auto-remove $buildDeps; \
-	\
-	groupadd -r openresty && useradd -r -d $OPENRESTY_HOME -m -g openresty openresty; \
-	mkdir -p /usr/local/openresty/auth_lua /opt/web /opt/gfunion/ /opt/gfunion_app/ /opt/qrcode_page
+	cd / && rm -rf /var/lib/apt/lists/* openresty.tar.gz* /opt/openresty/*; \
+	apt-get purge -y --auto-remove $buildDeps
 
-WORKDIR /usr/local/openresty/nginx
+CMD ["openresty", "-g", "daemon off;"]
 
-EXPOSE 80
-
-COPY docker-entrypoint.sh /
-
-ENTRYPOINT ["/docker-entrypoint.sh"]
-
-CMD ["nginx", "-c", "/usr/local/openresty/nginx/conf/nginx.conf"]
+STOPSIGNAL SIGQUIT

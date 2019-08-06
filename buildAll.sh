@@ -11,3 +11,4 @@ sh buildZookeeper.sh
 sh buildKafka.sh
 sh buildNginx.sh
 sh buildNexus.sh
+sh buildOpenResty.sh
