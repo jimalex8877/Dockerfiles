@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 docker pull debian:stretch-slim
-docker build debianBase/stretch/ -t changmingjiang/debian:latest
+docker build debianBase/ -t changmingjiang/debian:latest

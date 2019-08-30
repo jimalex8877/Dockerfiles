@@ -18,7 +18,7 @@ RUN set -ex; \
 	apt-get install -y $buildDeps --no-install-recommends; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
-	wget -e "https_proxy=${HTTPS_PROXY}" -c -q -O redis.tar.gz "http://download.redis.io/releases/redis-$REDIS_VERSION.tar.gz"; \
+	wget -e "https_proxy=${HTTPS_PROXY}" -c -q -O redis.tar.gz "https://download.redis.io/releases/redis-$REDIS_VERSION.tar.gz"; \
 	echo "$REDIS_DOWNLOAD_SHA *redis.tar.gz" | sha256sum -c -; \
 	mkdir -p /usr/src/redis; \
 	tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1; \

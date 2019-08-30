@@ -5,8 +5,8 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 # https://github.com/nginxinc/docker-nginx/blob/master/stable/stretch/Dockerfile
 
 RUN set -ex; \
-	NGINX_VERSION=1.16.0; \
-	NJS_VERSION=0.3.2; \
+	NGINX_VERSION=1.16.1; \
+	NJS_VERSION=0.3.5; \
 	PKG_RELEASE=1~stretch; \
 	nginxPackages=" \
 		nginx=${NGINX_VERSION}-${PKG_RELEASE} \

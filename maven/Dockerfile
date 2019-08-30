@@ -1,4 +1,4 @@
-FROM changmingjiang/openjdk11-jdk:latest
+FROM changmingjiang/openjdk8-jdk:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 

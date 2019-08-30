@@ -6,9 +6,9 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
 RUN set -ex; \
 	\
-	GPG_KEYS=9DA31620334BD75D9DCB49F368818C72E52529D4; \
-	MONGO_MAJOR=4.0; \
-	MONGO_VERSION=4.0.11; \
+	GPG_KEYS=E162F504A20CDF15827F718D4B7C549A058F8B6B; \
+	MONGO_MAJOR=4.2; \
+	MONGO_VERSION=4.2.0; \
 	\
 	echo "deb http://mirrors.aliyun.com/mongodb/apt/debian stretch/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list; \
 	export GNUPGHOME="$(mktemp -d)"; \

@@ -68,8 +68,8 @@ RUN buildDeps=' \
 	\
 	apt-get update && apt-get install -y $buildDeps $envDeps; \
 	\
-	wget -c -q -O openresty.tar.gz.asc    "https://openresty.org/download/openresty-$OPENRESTY_VERSION.tar.gz.asc"; \
-	wget -c -q -O openresty.tar.gz        "https://openresty.org/download/openresty-$OPENRESTY_VERSION.tar.gz"; \
+	wget -c -q -O openresty.tar.gz.asc	"https://openresty.org/download/openresty-$OPENRESTY_VERSION.tar.gz.asc"; \
+	wget -c -q -O openresty.tar.gz		"https://openresty.org/download/openresty-$OPENRESTY_VERSION.tar.gz"; \
 	\
 	export GNUPGHOME="$(mktemp -d)"; \
 	gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$OPENRESTY_GPG_KEY"; \
