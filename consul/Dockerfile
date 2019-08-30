@@ -1,4 +1,4 @@
-FROM changmingjiang/debian:buster
+FROM changmingjiang/debian:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
