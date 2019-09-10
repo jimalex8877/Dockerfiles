@@ -9,6 +9,14 @@ RUN set -ex; \
 	REDIS_VERSION=5.0.5; \
 	REDIS_DOWNLOAD_SHA=2139009799d21d8ff94fc40b7f36ac46699b9e1254086299f8d3b223ca54a375; \
 	\
+	echo 1024 > /proc/sys/net/core/somaxconn; \
+    echo 1 > /proc/sys/vm/overcommit_memory; \
+    echo 'never' > /sys/kernel/mm/transparent_hugepage/enabled; \
+	wget -e "https_proxy=${HTTPS_PROXY}" -c -q -O redis.tar.gz "http://download.redis.io/releases/redis-$REDIS_VERSION.tar.gz"; \
+	echo "$REDIS_DOWNLOAD_SHA *redis.tar.gz" | sha256sum -c -; \
+	mkdir -p /usr/src/redis; \
+	tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1; \
+	\
 	buildDeps=' \
 		gcc \
 		libc6-dev \
@@ -16,13 +24,6 @@ RUN set -ex; \
 	'; \
 	apt-get update; \
 	apt-get install -y $buildDeps --no-install-recommends; \
-	rm -rf /var/lib/apt/lists/*; \
-	\
-	wget -e "https_proxy=${HTTPS_PROXY}" -c -q -O redis.tar.gz "https://download.redis.io/releases/redis-$REDIS_VERSION.tar.gz"; \
-	echo "$REDIS_DOWNLOAD_SHA *redis.tar.gz" | sha256sum -c -; \
-	mkdir -p /usr/src/redis; \
-	tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1; \
-	rm redis.tar.gz; \
 	\
 	grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 1$' /usr/src/redis/src/server.h; \
 	sed -ri 's!^(#define CONFIG_DEFAULT_PROTECTED_MODE) 1$!\1 0!' /usr/src/redis/src/server.h; \
@@ -31,9 +32,9 @@ RUN set -ex; \
 	make -C /usr/src/redis -j "$(nproc)"; \
 	make -C /usr/src/redis install; \
 	\
-	rm -r /usr/src/redis; \
-	\
 	apt-get purge -y --auto-remove $buildDeps; \
+	\
+	rm -rf /var/lib/apt/lists/* redis.tar.gz /usr/src/redis; \
 	\
 	mkdir -p /opt/redis; \
 	groupadd -r redis && useradd -r -g redis redis

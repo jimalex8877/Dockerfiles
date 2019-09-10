@@ -1,9 +1,7 @@
 systemLog:
-  quiet: false
   path: "/opt/mongodb/mongodb.log"
   logAppend: true
-  destination: file
-  timeStampFormat: "iso8601-local"
+  destination: "file"
 processManagement:
   fork: false
   pidFilePath: "/opt/mongodb/mongodb.pid"
@@ -14,41 +12,24 @@ cloud:
 net:
   port: 37017
   bindIp: 0.0.0.0
-  maxIncomingConnections: 65536
-  ipv6: false
-  serviceExecutor: "synchronous" #adaptive synchronous
-  unixDomainSocket:
-    enabled: true
-    pathPrefix: "/opt/mongodb/data"
-  ssl:
+  serviceExecutor: "adaptive" # adaptive synchronous
+  tls:
     mode: "disabled"
+  compression:
+    compressors: snappy,zstd
 security:
-  authorization: "disabled"
-  #keyFile: "/opt/mongodb/replSet.key"
-  javascriptEnabled: true
+  authorization: "enabled" # enabled disabled
+  keyFile: "/opt/mongodb/replSet.key"
 storage:
   dbPath: "/opt/mongodb/data"
-  journal:
-    enabled: true
-    commitIntervalMs: 100
   directoryPerDB: true
-  engine: "wiredTiger"
   wiredTiger:
     engineConfig:
-      #cacheSizeGB: <number>
-      journalCompressor: "snappy"
+      journalCompressor: zstd
       directoryForIndexes: true
     collectionConfig:
-      blockCompressor: "snappy"
-    indexConfig:
-      prefixCompression: true
+      blockCompressor: zstd
 operationProfiling:
-  slowOpThresholdMs: 100
-  mode: "off"
-  slowOpSampleRate: 1.0
+  mode: "slowOp"
 replication:
-  #oplogSizeMB: <int>
   replSetName: "changming"
-sharding:
-  #clusterRole: <string>
-  archiveMovedChunks: false
