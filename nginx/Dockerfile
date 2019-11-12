@@ -5,6 +5,11 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 # https://github.com/nginxinc/docker-nginx/blob/master/stable/stretch/Dockerfile
 
 RUN set -ex; \
+	\
+	addgroup --system --gid 101 nginx; \
+	adduser --system --disabled-login --ingroup nginx --no-create-home --home /nonexistent --gecos "nginx user" \
+		--shell /bin/false --uid 101 nginx; \
+	\
 	NGINX_VERSION=1.16.1; \
 	NJS_VERSION=0.3.5; \
 	PKG_RELEASE=1~stretch; \
@@ -28,6 +33,8 @@ RUN set -ex; \
 WORKDIR /opt/nginx/
 
 COPY docker-entrypoint.sh /
+
+STOPSIGNAL SIGTERM
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 

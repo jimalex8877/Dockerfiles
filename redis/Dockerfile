@@ -2,16 +2,13 @@ FROM changmingjiang/debian:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
+ARG REDIS_VERSION=${REDIS_VERSION}
+ARG REDIS_DOWNLOAD_SHA=${REDIS_DOWNLOAD_SHA}
+
 # https://github.com/docker-library/redis/blob/master/5.0/Dockerfile
 
 RUN set -ex; \
 	\
-	REDIS_VERSION=5.0.5; \
-	REDIS_DOWNLOAD_SHA=2139009799d21d8ff94fc40b7f36ac46699b9e1254086299f8d3b223ca54a375; \
-	\
-	echo 1024 > /proc/sys/net/core/somaxconn; \
-    echo 1 > /proc/sys/vm/overcommit_memory; \
-    echo 'never' > /sys/kernel/mm/transparent_hugepage/enabled; \
 	wget -e "https_proxy=${HTTPS_PROXY}" -c -q -O redis.tar.gz "http://download.redis.io/releases/redis-$REDIS_VERSION.tar.gz"; \
 	echo "$REDIS_DOWNLOAD_SHA *redis.tar.gz" | sha256sum -c -; \
 	mkdir -p /usr/src/redis; \

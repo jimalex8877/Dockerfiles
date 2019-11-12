@@ -13,10 +13,10 @@ ENV RABBITMQ_HOME=/opt/rabbitmq \
 
 RUN	set -ex; \
 	\
-	RABBITMQ_VERSION=3.7.17-1; \
+	RABBITMQ_VERSION=3.8.0-1; \
 	\
 	echo "deb http://dl.bintray.com/rabbitmq/debian stretch main" >> /etc/apt/sources.list; \
-	echo "deb http://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/debian stretch contrib" >> /etc/apt/sources.list; \
+	echo "deb http://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/debian buster contrib" >> /etc/apt/sources.list; \
 	\
 	wget -q -O - https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | apt-key add -; \
 	wget -q -O - https://packages.erlang-solutions.com/debian/erlang_solutions.asc | apt-key add -; \

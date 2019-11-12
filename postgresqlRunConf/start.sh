@@ -16,7 +16,7 @@ docker run --restart=always --expose 5432 -p 5432:5432 -d --name postgres-5432 \
     changmingjiang/postgres:latest
 
 if [ -z "$(ls -A `pwd`/5433/data)" ]; then
-	sleep 30
+	sleep 60
 fi
 
 mkdir -p `pwd`/5433/data

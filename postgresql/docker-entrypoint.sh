@@ -9,17 +9,16 @@ if [ -z "$(ls -A "$PGDATA")" ]; then
 		echo "*:$MASTER_PORT:*:$MASTER_REPLICA_USER:$MASTER_REPLICA_USER_PASS" >> /var/lib/postgresql/.pgpass
 		gosu postgres chmod 0600 /var/lib/postgresql/.pgpass
 
-		gosu postgres pg_basebackup -D $PGDATA -Fp -Xs -v -P -h $MASTER_HOST -p $MASTER_PORT -U "$MASTER_REPLICA_USER" -w;
+		gosu postgres pg_basebackup -R -D $PGDATA -Fp -Xs -v -P -h $MASTER_HOST -p $MASTER_PORT -U "$MASTER_REPLICA_USER" -w;
 
 		#=======================
 
-		cp /usr/share/postgresql/10/postgresql.conf.sample $PGDATA/postgresql.conf
-		cp /usr/share/postgresql/10/recovery.conf.sample $PGDATA/recovery.conf
+		cp /usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample $PGDATA/postgresql.conf
 
-		sed -i "s/#recovery_target_timeline = 'latest'/recovery_target_timeline = 'latest'/" "$PGDATA"/recovery.conf
-		sed -i "s/#standby_mode = off/standby_mode = on/" "$PGDATA"/recovery.conf
-		sed -i "s/#primary_conninfo = ''/primary_conninfo = 'host=$MASTER_HOST port=$MASTER_PORT user=$MASTER_REPLICA_USER password=$MASTER_REPLICA_USER_PASS'/" "$PGDATA"/recovery.conf
-		sed -i "s|#trigger_file = ''|trigger_file = '$PGDATA/trigger_file'|" "$PGDATA"/recovery.conf
+		sed -i "s/#recovery_target_timeline = 'latest'/recovery_target_timeline = 'latest'/" "$PGDATA"/postgresql.conf
+		sed -i "s/#standby_mode = off/standby_mode = on/" "$PGDATA"/postgresql.conf
+		sed -i "s/#primary_conninfo = ''/primary_conninfo = 'host=$MASTER_HOST port=$MASTER_PORT user=$MASTER_REPLICA_USER password=$MASTER_REPLICA_USER_PASS'/" "$PGDATA"/postgresql.conf
+		sed -i "s|#trigger_file = ''|trigger_file = '$PGDATA/trigger_file'|" "$PGDATA"/postgresql.conf
 	else
 		gosu postgres initdb
 	fi

@@ -5,20 +5,20 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 ENV  CONSUL_DATA_DIR=/opt/consul/data \
      CONSUL_CONFIG_DIR=/opt/consul/config
 
+ARG CONSUL_VERSION=${CONSUL_VERSION}
+ARG CONSUL_GPG_KEYS=91A6E7F85D05C65630BEF18951852D87348FFC4C
+
 # https://github.com/hashicorp/docker-consul/blob/master/0.X/Dockerfile
 
 RUN set -ex; \
-	\
-	CONSUL_VERSION=1.6.0; \
-	CONSUL_GPG_KEYS=91A6E7F85D05C65630BEF18951852D87348FFC4C; \
 	\
 	apt-get update; \
 	apt-get install -y unzip iproute2 dumb-init jq moreutils --no-install-recommends; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
-	wget -e "https_proxy=${HTTPS_PROXY}" -c -q "https://releases.hashicorp.com/consul/$CONSUL_VERSION/consul_${CONSUL_VERSION}_linux_amd64.zip"; \
-	wget -e "https_proxy=${HTTPS_PROXY}" -c -q "https://releases.hashicorp.com/consul/$CONSUL_VERSION/consul_${CONSUL_VERSION}_SHA256SUMS"; \
-	wget -e "https_proxy=${HTTPS_PROXY}" -c -q "https://releases.hashicorp.com/consul/$CONSUL_VERSION/consul_${CONSUL_VERSION}_SHA256SUMS.sig"; \
+	wget -e "https_proxy=${HTTPS_PROXY}" -c -q "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip"; \
+	wget -e "https_proxy=${HTTPS_PROXY}" -c -q "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_SHA256SUMS"; \
+	wget -e "https_proxy=${HTTPS_PROXY}" -c -q "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_SHA256SUMS.sig"; \
 	\
 	export GNUPGHOME="$(mktemp -d)"; \
 	gpg  --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $CONSUL_GPG_KEYS; \
