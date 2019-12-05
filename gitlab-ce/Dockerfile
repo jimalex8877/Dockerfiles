@@ -6,7 +6,7 @@ RUN set -ex; \
 	\
 	GITLAB_CE_VERSION=11.11.3-ce.0; \
 	\
-	echo "deb http://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/debian stretch main" >> /etc/apt/sources.list; \
+	echo "deb http://mirrors.aliyun.com/gitlab-ce/debian buster main" >> /etc/apt/sources.list; \
 	\
 	wget --quiet -O - https://packages.gitlab.com/gpg.key | apt-key add -; \
 	apt update && apt-get install -yq --no-install-recommends \

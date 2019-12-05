@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
-docker build mongodb/ -t changmingjiang/mongodb:latest
 
-docker tag changmingjiang/mongodb:latest changmingjiang/mongodb:4.2.0
+MONGO_MAJOR=4.2
+MONGO_VERSION=4.2.1
+
+docker build mongodb/ \
+	--build-arg MONGO_MAJOR=$MONGO_MAJOR \
+	--build-arg MONGO_VERSION=$MONGO_VERSION \
+	-t changmingjiang/mongodb:latest
+
+docker tag changmingjiang/mongodb:latest changmingjiang/mongodb:$MONGO_VERSION
+
+docker push changmingjiang/mongodb:latest && docker push changmingjiang/mongodb:$MONGO_VERSION

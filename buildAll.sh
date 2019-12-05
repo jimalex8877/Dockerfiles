@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 sh buildDebianBase.sh
 sh buildConsul.sh
-sh buildGolang.sh
+#sh buildGolang.sh
 sh buildOpenjdk.sh
 sh buildMongodb.sh
 sh buildPostgres.sh
@@ -9,6 +9,5 @@ sh buildRedisOrSentinel.sh
 sh buildRabbitMQ.sh
 sh buildNginx.sh
 sh buildNexus.sh
-sh buildOpenResty.sh
-sh buildDocker.sh
+#sh buildDocker.sh
 sh buildMaven.sh

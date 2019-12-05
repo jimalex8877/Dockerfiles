@@ -2,15 +2,15 @@ FROM changmingjiang/debian:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
-# https://github.com/docker-library/mongo/blob/master/4.0/Dockerfile
+# https://github.com/docker-library/mongo/blob/master/4.2/Dockerfile
+
+ARG MONGO_MAJOR=$MONGO_MAJOR
+ARG MONGO_VERSION=$MONGO_VERSION
+ARG GPG_KEYS=E162F504A20CDF15827F718D4B7C549A058F8B6B
 
 RUN set -ex; \
 	\
-	GPG_KEYS=E162F504A20CDF15827F718D4B7C549A058F8B6B; \
-	MONGO_MAJOR=4.2; \
-	MONGO_VERSION=4.2.0; \
-	\
-	echo "deb http://mirrors.aliyun.com/mongodb/apt/debian stretch/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list; \
+	echo "deb http://mirrors.aliyun.com/mongodb/apt/debian buster/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list; \
 	export GNUPGHOME="$(mktemp -d)"; \
 	gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $GPG_KEYS; \
 	gpg --export $GPG_KEYS > /etc/apt/trusted.gpg.d/mongodb.gpg; \

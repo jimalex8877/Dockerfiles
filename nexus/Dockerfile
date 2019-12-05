@@ -1,18 +1,18 @@
-FROM changmingjiang/openjdk8-jre:latest
+FROM changmingjiang/openjdk-8-jre-openj9:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
 # https://github.com/sonatype/docker-nexus3/blob/master/Dockerfile
+
+ARG NEXUS_VERSION=$NEXUS_VERSION
+ARG NEXUS_DOWNLOAD_URL=https://sonatype-download.global.ssl.fastly.net/repository/repositoryManager/3/nexus-${NEXUS_VERSION}-unix.tar.gz
+ARG NEXUS_DOWNLOAD_SHA256_HASH=$NEXUS_DOWNLOAD_SHA256_HASH
 
 ENV SONATYPE_DIR=/opt/sonatype \
 	NEXUS_HOME=/opt/sonatype/nexus \
 	NEXUS_DATA=/opt/sonatype/sonatype-work/nexus3
 
 RUN set -ex; \
-	\
-	NEXUS_VERSION=3.18.0-01; \
-	NEXUS_DOWNLOAD_URL=https://sonatype-download.global.ssl.fastly.net/repository/repositoryManager/3/nexus-${NEXUS_VERSION}-unix.tar.gz; \
-	NEXUS_DOWNLOAD_SHA256_HASH=e1d9d84d8b169b2f6c735e7db35e3310cf9e242da12b4af83da4e3618acfc99e; \
 	\
 	mkdir -p "${SONATYPE_DIR}" "${NEXUS_DATA}"; \
 	wget -e "https_proxy=${HTTPS_PROXY}" -c -q -O nexus.tar.gz $NEXUS_DOWNLOAD_URL; \

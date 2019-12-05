@@ -1,4 +1,15 @@
 #!/usr/bin/env bash
-docker build nginx/ -t changmingjiang/nginx:latest
 
-docker tag changmingjiang/nginx:latest changmingjiang/nginx:3.18.0-01
+NGINX_VERSION=1.16.1
+NJS_VERSION=0.3.5
+PKG_RELEASE=1~buster
+
+docker build nginx/ \
+	--build-arg NGINX_VERSION=$NGINX_VERSION \
+	--build-arg NJS_VERSION=$NJS_VERSION \
+	--build-arg PKG_RELEASE=$PKG_RELEASE \
+	-t changmingjiang/nginx:latest
+
+docker tag changmingjiang/nginx:latest changmingjiang/nginx:$NGINX_VERSION
+
+docker push changmingjiang/nginx:latest && docker push changmingjiang/nginx:$NGINX_VERSION

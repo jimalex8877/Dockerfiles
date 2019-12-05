@@ -5,12 +5,12 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 ENV GOPATH=/go \
 	PATH=/go/bin:/usr/local/go/bin:$PATH
 
-# https://github.com/docker-library/golang
+# https://github.com/docker-library/golang/blob/master/1.13/buster/Dockerfile
 
 RUN set -ex; \
 	\
-	GOLANG_VERSION=1.12.9; \
-	GOLANG_SHA256=ac2a6efcc1f5ec8bdc0db0a988bb1d301d64b6d61b7e8d9e42f662fbb75a2b9b; \
+	GOLANG_VERSION=1.13.4; \
+	GOLANG_SHA256=692d17071736f74be04a72a06dab9cac1cd759377bd85316e52b2227604c004c; \
 	\
 	apt-get update && apt-get install -y --no-install-recommends \
 		g++ \

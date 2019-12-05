@@ -4,15 +4,16 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
 # https://github.com/docker-library/postgres/blob/master/12/Dockerfile
 
-ENV PG_MAJOR=12 \
-	PG_VERSION=12.0-1.pgdg100+1 \
-	PGDATA=/opt/postgres/data \
-	PATH=$PATH:/usr/lib/postgresql/12/bin/
+ARG PG_MAJOR=$PG_MAJOR
+ARG PG_VERSION=$PG_VERSION
+
+ENV PGDATA=/opt/postgres/data \
+	PATH=$PATH:/usr/lib/postgresql/${PG_MAJOR}/bin/
 
 RUN set -ex; \
 	\
 	echo "deb http://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt/ buster-pgdg main" >> /etc/apt/sources.list; \
-	echo "deb-src http://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt/ buster-pgdg main" >> /etc/apt/sources.list; \
+	#echo "deb-src http://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt/ buster-pgdg main" >> /etc/apt/sources.list; \
 	\
 	wget --quiet -O - https://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt/ACCC4CF8.asc | apt-key add -; \
 	\
