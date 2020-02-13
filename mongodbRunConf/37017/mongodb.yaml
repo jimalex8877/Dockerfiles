@@ -33,3 +33,4 @@ operationProfiling:
   mode: "slowOp"
 replication:
   replSetName: "changming"
+  enableMajorityReadConcern: false

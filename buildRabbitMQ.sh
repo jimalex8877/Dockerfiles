@@ -2,7 +2,7 @@
 RABBITMQ_VERSION=3.8.2
 RABBITMQ_REVISED_VERSION=1
 docker build rabbitMQ/ \
-	--build-arg HTTPS_PROXY=http://10.1.226.187:1087 \
+	--build-arg HTTPS_PROXY=http://192.168.1.101:1087 \
 	--build-arg RABBITMQ_VERSION=${RABBITMQ_VERSION}-${RABBITMQ_REVISED_VERSION} \
 	-t changmingjiang/rabbitmq:latest
 

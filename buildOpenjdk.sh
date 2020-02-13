@@ -1,25 +1,25 @@
 #!/usr/bin/env bash
 
-JAVA_VERSION=8u232
-JAVA_REVISED_VERSION=b09
-OPENJ9_VERSION=0.17.0
+JAVA_VERSION=8u242
+JAVA_REVISED_VERSION=b08
+OPENJ9_VERSION=0.18.1
 
 docker build openjdk/8/ \
-	--build-arg HTTPS_PROXY=http://10.1.226.187:1087 \
+	--build-arg HTTPS_PROXY=http://192.168.1.101:1087 \
 	\
 	--build-arg JAVA_VERSION=$JAVA_VERSION \
 	--build-arg JAVA_REVISED_VERSION=$JAVA_REVISED_VERSION \
 	--build-arg JAVA_SUPERSET=jre \
-	--build-arg JAVA_BINARY_ESUM=bd06b84a1fc10e0a555431bc49a84e86df45de0be93c8ee4d09d13513219843b \
+	--build-arg JAVA_BINARY_ESUM=5edfaefdbb0469d8b24d61c8aef80c076611053b1738029c0232b9a632fe2708 \
 	\
 	-t changmingjiang/openjdk-8-jre:latest
 docker build openjdk/8/ \
-	--build-arg HTTPS_PROXY=http://10.1.226.187:1087 \
+	--build-arg HTTPS_PROXY=http://192.168.1.101:1087 \
 	\
 	--build-arg JAVA_VERSION=$JAVA_VERSION \
 	--build-arg JAVA_REVISED_VERSION=$JAVA_REVISED_VERSION \
 	--build-arg JAVA_SUPERSET=jdk \
-	--build-arg JAVA_BINARY_ESUM=7b7884f2eb2ba2d47f4c0bf3bb1a2a95b73a3a7734bd47ebf9798483a7bcc423 \
+	--build-arg JAVA_BINARY_ESUM=f39b523c724d0e0047d238eb2bb17a9565a60574cf651206c867ee5fc000ab43 \
 	\
 	-t changmingjiang/openjdk-8-jdk:latest
 
@@ -27,23 +27,23 @@ docker tag changmingjiang/openjdk-8-jre:latest changmingjiang/openjdk-8-jre:$JAV
 docker tag changmingjiang/openjdk-8-jdk:latest changmingjiang/openjdk-8-jdk:$JAVA_VERSION
 
 docker build openjdk/8/openj9/ \
-	--build-arg HTTPS_PROXY=http://10.1.226.187:1087 \
+	--build-arg HTTPS_PROXY=http://192.168.1.101:1087 \
 	\
 	--build-arg JAVA_VERSION=$JAVA_VERSION \
 	--build-arg JAVA_REVISED_VERSION=$JAVA_REVISED_VERSION \
 	--build-arg OPENJ9_VERSION=$OPENJ9_VERSION \
 	--build-arg JAVA_SUPERSET=jre \
-	--build-arg JAVA_BINARY_ESUM=30bdfdb38901d4807d96a72a33b83f7a4f40255e11a88853c1e8732acc4644a7 \
+	--build-arg JAVA_BINARY_ESUM=985d3134b64c6196d4c9ddbc87af0c62b0e643cef71b29f3d25a8c7811811745 \
 	\
 	-t changmingjiang/openjdk-8-jre-openj9:latest
 docker build openjdk/8/openj9/ \
-	--build-arg HTTPS_PROXY=http://10.1.226.187:1087 \
+	--build-arg HTTPS_PROXY=http://192.168.1.101:1087 \
 	\
 	--build-arg JAVA_VERSION=$JAVA_VERSION \
 	--build-arg JAVA_REVISED_VERSION=$JAVA_REVISED_VERSION \
 	--build-arg OPENJ9_VERSION=$OPENJ9_VERSION \
 	--build-arg JAVA_SUPERSET=jdk \
-	--build-arg JAVA_BINARY_ESUM=abea758c7e102f3c4a3be8757ee0ce039a70e2d498c160400dfb83c6f7004dbf \
+	--build-arg JAVA_BINARY_ESUM=ca785af638b24f9d4df896f5a9f557cc9f1e5fa5e2b1174d6b906e3fd5474c2e \
 	\
 	-t changmingjiang/openjdk-8-jdk-openj9:latest
 

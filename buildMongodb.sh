@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 MONGO_MAJOR=4.2
-MONGO_VERSION=4.2.1
+MONGO_VERSION=4.2.3
 
 docker build mongodb/ \
 	--build-arg MONGO_MAJOR=$MONGO_MAJOR \
