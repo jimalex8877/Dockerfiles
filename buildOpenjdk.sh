@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+LocaleIp=`ip addr show en0|grep 'inet '|awk '{print $2}'|awk -F/ '{print $1}'`
+
 JAVA_VERSION=8u242
 JAVA_REVISED_VERSION=b08
 OPENJ9_VERSION=0.18.1
 
 docker build openjdk/8/ \
-	--build-arg HTTPS_PROXY=http://192.168.1.101:1087 \
+	--build-arg HTTPS_PROXY=http://$LocaleIp:1087 \
 	\
 	--build-arg JAVA_VERSION=$JAVA_VERSION \
 	--build-arg JAVA_REVISED_VERSION=$JAVA_REVISED_VERSION \
@@ -14,7 +16,7 @@ docker build openjdk/8/ \
 	\
 	-t changmingjiang/openjdk-8-jre:latest
 docker build openjdk/8/ \
-	--build-arg HTTPS_PROXY=http://192.168.1.101:1087 \
+	--build-arg HTTPS_PROXY=http://$LocaleIp:1087 \
 	\
 	--build-arg JAVA_VERSION=$JAVA_VERSION \
 	--build-arg JAVA_REVISED_VERSION=$JAVA_REVISED_VERSION \
@@ -27,7 +29,7 @@ docker tag changmingjiang/openjdk-8-jre:latest changmingjiang/openjdk-8-jre:$JAV
 docker tag changmingjiang/openjdk-8-jdk:latest changmingjiang/openjdk-8-jdk:$JAVA_VERSION
 
 docker build openjdk/8/openj9/ \
-	--build-arg HTTPS_PROXY=http://192.168.1.101:1087 \
+	--build-arg HTTPS_PROXY=http://$LocaleIp:1087 \
 	\
 	--build-arg JAVA_VERSION=$JAVA_VERSION \
 	--build-arg JAVA_REVISED_VERSION=$JAVA_REVISED_VERSION \
@@ -37,7 +39,7 @@ docker build openjdk/8/openj9/ \
 	\
 	-t changmingjiang/openjdk-8-jre-openj9:latest
 docker build openjdk/8/openj9/ \
-	--build-arg HTTPS_PROXY=http://192.168.1.101:1087 \
+	--build-arg HTTPS_PROXY=http://$LocaleIp:1087 \
 	\
 	--build-arg JAVA_VERSION=$JAVA_VERSION \
 	--build-arg JAVA_REVISED_VERSION=$JAVA_REVISED_VERSION \

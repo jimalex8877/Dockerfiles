@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
+
+LocaleIp=`ip addr show en0|grep 'inet '|awk '{print $2}'|awk -F/ '{print $1}'`
+
 RABBITMQ_VERSION=3.8.2
 RABBITMQ_REVISED_VERSION=1
+
 docker build rabbitMQ/ \
-	--build-arg HTTPS_PROXY=http://192.168.1.101:1087 \
+	--build-arg HTTPS_PROXY=http://$LocaleIp:1087 \
 	--build-arg RABBITMQ_VERSION=${RABBITMQ_VERSION}-${RABBITMQ_REVISED_VERSION} \
 	-t changmingjiang/rabbitmq:latest
 

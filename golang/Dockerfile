@@ -2,15 +2,15 @@ FROM changmingjiang/debian:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
+ARG GOLANG_VERSION=$GOLANG_VERSION
+ARG GOLANG_SHA256=$GOLANG_SHA256
+
 ENV GOPATH=/go \
 	PATH=/go/bin:/usr/local/go/bin:$PATH
 
 # https://github.com/docker-library/golang/blob/master/1.13/buster/Dockerfile
 
 RUN set -ex; \
-	\
-	GOLANG_VERSION=1.13.4; \
-	GOLANG_SHA256=692d17071736f74be04a72a06dab9cac1cd759377bd85316e52b2227604c004c; \
 	\
 	apt-get update && apt-get install -y --no-install-recommends \
 		g++ \

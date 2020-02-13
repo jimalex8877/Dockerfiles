@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
-CONSUL_VERSION=1.6.3
+LocaleIp=`ip addr show en0|grep 'inet '|awk '{print $2}'|awk -F/ '{print $1}'`
+
+CONSUL_VERSION=1.7.0
+
 docker build consul/ \
 	--build-arg CONSUL_VERSION=$CONSUL_VERSION \
-	--build-arg HTTPS_PROXY=http://192.168.1.101:1087 \
+	--build-arg HTTPS_PROXY=http://$LocaleIp:1087 \
 	-t changmingjiang/consul:latest
 
 docker tag changmingjiang/consul:latest changmingjiang/consul:$CONSUL_VERSION
