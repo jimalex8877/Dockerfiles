@@ -9,3 +9,5 @@ docker build kafka/ \
 	-t changmingjiang/kafka:latest
 
 docker tag changmingjiang/kafka:latest changmingjiang/kafka:$KAFKA_VERSION
+
+docker push changmingjiang/kafka:latest && docker push changmingjiang/kafka:latest
