@@ -28,10 +28,9 @@ RUN set -ex; \
 	apt-get update && apt-get install --no-install-recommends --no-install-suggests -y \
 		$nginxPackages \
 		gettext-base; \
-	rm -rf /var/lib/apt/lists/*; \
-	mkdir -p /opt/nginx
+	rm -rf /var/lib/apt/lists/*
 
-WORKDIR /opt/nginx/
+WORKDIR /etc/nginx/
 
 COPY docker-entrypoint.sh /
 
@@ -39,4 +38,4 @@ STOPSIGNAL SIGTERM
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD ["nginx", "-c", "/opt/nginx/nginx.conf", "-g", "daemon off;"]
+CMD ["nginx", "-c", "/etc/nginx/nginx.conf", "-g", "daemon off;"]
