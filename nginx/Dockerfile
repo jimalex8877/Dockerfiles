@@ -30,8 +30,7 @@ RUN set -ex; \
 		gettext-base; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
-	mkdir -p /opt/nginx/logs/ && mv -f /etc/nginx/* /opt/nginx/; \
-	mv -f /var/log/nginx/* /opt/nginx/logs/ && mv /var/run/nginx.pid /opt/nginx/nginx.pid; \
+	mkdir -p /opt/nginx/logs/ && mv -f /etc/nginx/* /opt/nginx/ && mv -f /var/log/nginx/* /opt/nginx/logs/; \
 	\
 	sed -i "s|/var/run/nginx.pid|/opt/nginx/nginx.pid|g" /opt/nginx/nginx.conf; \
 	sed -i "s|/var/log/nginx|/opt/nginx/logs|g" /opt/nginx/nginx.conf; \
