@@ -36,7 +36,9 @@ RUN set -ex; \
 	sed -i "s|/var/log/nginx|/opt/nginx/logs|g" /opt/nginx/nginx.conf; \
 	sed -i "s|/etc/nginx|/opt/nginx|g" /opt/nginx/nginx.conf; \
 	\
-	chown -R nginx:nginx /opt/nginx/
+	chown -R nginx:nginx /opt/nginx/; \
+	chown -R nginx:nginx /var/log/nginx; \
+	chown -R nginx:nginx /var/cache/nginx
 
 WORKDIR /opt/nginx/
 
