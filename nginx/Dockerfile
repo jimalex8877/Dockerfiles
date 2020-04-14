@@ -30,24 +30,9 @@ RUN set -ex; \
 		gettext-base; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
-	mkdir -p /opt/nginx/logs/ && mv -f /etc/nginx/* /opt/nginx/ && mv -f /var/log/nginx/* /opt/nginx/logs/; \
-	\
-	sed -i "s|/var/run/nginx.pid|/opt/nginx/nginx.pid|g" /opt/nginx/nginx.conf; \
-	sed -i "s|/var/log/nginx|/opt/nginx/logs|g" /opt/nginx/nginx.conf; \
-	sed -i "s|/etc/nginx|/opt/nginx|g" /opt/nginx/nginx.conf; \
-	\
-	chown -R nginx:nginx /opt/nginx/; \
-	chown -R nginx:nginx /var/log/nginx; \
-	chown -R nginx:nginx /var/cache/nginx; \
-	chown root nginx; \
-    chmod +s nginx
-
-WORKDIR /opt/nginx/
-
-COPY docker-entrypoint.sh /
+	ln -sf /dev/stdout /var/log/nginx/access.log;\
+	ln -sf /dev/stderr /var/log/nginx/error.log
 
 STOPSIGNAL SIGTERM
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
-
-CMD ["nginx", "-c", "/opt/nginx/nginx.conf", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
