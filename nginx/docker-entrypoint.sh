@@ -5,5 +5,6 @@ if [ ! -f "/var/log/nginx/access.log" ]; then
 fi
 
 chown -R nginx:nginx /etc/nginx/conf.d/
+chown -R nginx:nginx /var/log/nginx/
 
 exec gosu nginx "$@"
