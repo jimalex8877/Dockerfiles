@@ -38,7 +38,9 @@ RUN set -ex; \
 	\
 	chown -R nginx:nginx /opt/nginx/; \
 	chown -R nginx:nginx /var/log/nginx; \
-	chown -R nginx:nginx /var/cache/nginx
+	chown -R nginx:nginx /var/cache/nginx; \
+	chown root nginx; \
+    chmod +s nginx
 
 WORKDIR /opt/nginx/
 
