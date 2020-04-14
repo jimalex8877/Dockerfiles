@@ -2,9 +2,9 @@
 
 LocaleIp=`ip addr show en0|grep 'inet '|awk '{print $2}'|awk -F/ '{print $1}'`
 
-NEXUS_VERSION=3.20.1
-NEXUS_REVISED_VERSION=01
-NEXUS_DOWNLOAD_SHA256_HASH=fba9953e70e2d53262d2bd953e5fbab3e44cf2965467df14a665b0752de30e51
+NEXUS_VERSION=3.22.0
+NEXUS_REVISED_VERSION=02
+NEXUS_DOWNLOAD_SHA256_HASH=9fef4ee8d7423cd73d2bf3576acc22f8d1b76c9b0ff733e2d36f00b59f1b8388
 
 docker build nexus/ \
 	--build-arg HTTPS_PROXY=http://$LocaleIp:1087 \

@@ -2,7 +2,7 @@
 
 LocaleIp=`ip addr show en0|grep 'inet '|awk '{print $2}'|awk -F/ '{print $1}'`
 
-RABBITMQ_VERSION=3.8.2
+RABBITMQ_VERSION=3.8.3
 RABBITMQ_REVISED_VERSION=1
 
 docker build rabbitMQ/ \

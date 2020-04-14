@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 PG_MAJOR=12
-PG_VERSION=12.1
-PG_REVISED_VERSION=1.pgdg100+1
+PG_VERSION=12.2
+PG_REVISED_VERSION=2.pgdg100+1
 
 docker build postgresql/ \
 	--build-arg PG_MAJOR=$PG_MAJOR \
