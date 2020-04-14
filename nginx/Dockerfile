@@ -28,9 +28,18 @@ RUN set -ex; \
 	apt-get update && apt-get install --no-install-recommends --no-install-suggests -y \
 		$nginxPackages \
 		gettext-base; \
-	rm -rf /var/lib/apt/lists/*
+	rm -rf /var/lib/apt/lists/*; \
+	\
+	mkdir -p /opt/nginx/logs/ && mv -f /etc/nginx/* /opt/nginx/; \
+	mv -f /var/log/nginx/* /opt/nginx/logs/ && mv /var/run/nginx.pid /opt/nginx/nginx.pid; \
+	\
+	sed -i "s|/var/run/nginx.pid|/opt/nginx/nginx.pid|g" /opt/nginx/nginx.conf; \
+	sed -i "s|/var/log/nginx|/opt/nginx/logs|g" /opt/nginx/nginx.conf; \
+	sed -i "s|/etc/nginx|/opt/nginx|g" /opt/nginx/nginx.conf; \
+	\
+	chown -R nginx:nginx /opt/nginx/
 
-WORKDIR /etc/nginx/
+WORKDIR /opt/nginx/
 
 COPY docker-entrypoint.sh /
 
@@ -38,4 +47,4 @@ STOPSIGNAL SIGTERM
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD ["nginx", "-c", "/etc/nginx/nginx.conf", "-g", "daemon off;"]
+CMD ["nginx", "-c", "/opt/nginx/nginx.conf", "-g", "daemon off;"]

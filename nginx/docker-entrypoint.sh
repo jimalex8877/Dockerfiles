@@ -1,10 +1,10 @@
 #!/bin/sh
-if [ ! -f "/var/log/nginx/access.log" ]; then
-	touch /var/log/nginx/access.log
-	touch /var/log/nginx/error.log
+if [ ! -f "/opt/nginx/logs/access.log" ]; then
+	touch /opt/nginx/logs/access.log
+	touch /opt/nginx/logs/error.log
 fi
 
-chown -R nginx:nginx /etc/nginx/conf.d/
-chown -R nginx:nginx /var/log/nginx/
+chown -R nginx:nginx /opt/nginx/conf.d/
+chown -R nginx:nginx /opt/nginx/logs/
 
 exec gosu nginx "$@"
