@@ -23,8 +23,7 @@ RUN	set -ex; \
 	\
 	mkdir -p $RABBITMQ_MNESIA_BASE $RABBITMQ_ENABLED_PLUGINS_FILE /etc/rabbitmq/; \
 	\
-	wget -e "https_proxy=${HTTPS_PROXY}" "https://raw.githubusercontent.com/rabbitmq/rabbitmq-server/master/docs/rabbitmq.conf.example" \
-		-q -c -O "/etc/rabbitmq/rabbitmq.conf"; \
+	wget https://gitee.com/mirrors/rabbitmq/raw/master/docs/rabbitmq.conf.example -q -c -O /etc/rabbitmq/rabbitmq.conf; \
 	\
 	apt-get update; \
 	apt-get install -y --no-install-recommends \

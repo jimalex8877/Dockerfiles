@@ -8,7 +8,7 @@ ARG GOLANG_SHA256=$GOLANG_SHA256
 ENV GOPATH=/go \
 	PATH=/go/bin:/usr/local/go/bin:$PATH
 
-# https://github.com/docker-library/golang/blob/master/1.13/buster/Dockerfile
+# https://github.com/docker-library/golang/blob/master/1.14/buster/Dockerfile
 
 RUN set -ex; \
 	\

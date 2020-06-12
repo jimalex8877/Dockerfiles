@@ -5,7 +5,7 @@ echo 1 > /proc/sys/vm/overcommit_memory
 echo 'never' > /sys/kernel/mm/transparent_hugepage/enabled
 
 if [ ! -f "/opt/redis/sentinel.conf" ]; then
-	wget -c -O /opt/redis/sentinel.conf http://download.redis.io/redis-stable/sentinel.conf
+	wget -c -O /opt/redis/sentinel.conf https://gitee.com/mirrors/redis/raw/5.0/sentinel.conf
 
 	sed -i "s|dir /tmp|dir /opt/redis|" /opt/redis/sentinel.conf
 	{ echo "logfile /opt/redis/sentinel.log"; echo; } >> /opt/redis/sentinel.conf

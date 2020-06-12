@@ -30,6 +30,8 @@ RUN set -ex; \
 		gettext-base; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
+	sed -i "s|sendfile        on;|sendfile        off;|g" /etc/nginx/nginx.conf; \
+	\
 	ln -sf /dev/stdout /var/log/nginx/access.log;\
 	ln -sf /dev/stderr /var/log/nginx/error.log
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-KAFKA_VERSION=2.4.0
+KAFKA_VERSION=2.5.0
 SCALA_VERSION=2.13
 
 docker build kafka/ \

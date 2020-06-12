@@ -9,7 +9,7 @@ ARG REDIS_DOWNLOAD_SHA=${REDIS_DOWNLOAD_SHA}
 
 RUN set -ex; \
 	\
-	wget -e "https_proxy=${HTTPS_PROXY}" -c -q -O redis.tar.gz "http://download.redis.io/releases/redis-$REDIS_VERSION.tar.gz"; \
+	wget -c -q -O redis.tar.gz "http://download.redis.io/releases/redis-$REDIS_VERSION.tar.gz"; \
 	echo "$REDIS_DOWNLOAD_SHA *redis.tar.gz" | sha256sum -c -; \
 	mkdir -p /usr/src/redis; \
 	tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1; \

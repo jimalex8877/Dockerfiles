@@ -2,7 +2,7 @@ FROM changmingjiang/openjdk-8-jdk:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
-# https://github.com/carlossg/docker-maven/blob/master/jdk-8/Dockerfile
+# https://github.com/carlossg/docker-maven/blob/master/openjdk-8-slim/Dockerfile
 
 ARG MAVEN_VERSION=$MAVEN_VERSION
 ARG MAVEN_SHA=$MAVEN_SHA

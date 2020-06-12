@@ -5,7 +5,7 @@ echo 1 > /proc/sys/vm/overcommit_memory
 echo 'never' > /sys/kernel/mm/transparent_hugepage/enabled
 
 if [ ! -f "/opt/redis/redis.conf" ]; then
-	wget -c -O /opt/redis/redis.conf http://download.redis.io/redis-stable/redis.conf
+	wget -c -O /opt/redis/redis.conf https://gitee.com/mirrors/redis/raw/5.0/redis.conf
 
 	sed -i "s/daemonize yes/daemonize no/" /opt/redis/redis.conf
 	sed -i "s|dir /var/lib/redis/|dir /opt/redis|" /opt/redis/redis.conf

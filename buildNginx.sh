@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-NGINX_VERSION=1.16.1
-NJS_VERSION=0.3.8
+NGINX_VERSION=1.18.0
+NJS_VERSION=0.4.0
 PKG_RELEASE=1~buster
 
 docker build nginx/ \

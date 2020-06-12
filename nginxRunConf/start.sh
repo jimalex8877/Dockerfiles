@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 mkdir -p `pwd`/conf
-docker run --restart=always -d --name nginx \
-	--expose 80 -p 80:80 \
-	--expose 443 -p 443:443 \
+docker run --restart=always --net=host -d --name nginx \
 	-v `pwd`/conf/:/etc/nginx/conf.d/ \
+	-v `pwd`/logs/:/etc/nginx/logs/ \
 	changmingjiang/nginx:latest
