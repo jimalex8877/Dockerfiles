@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-RABBITMQ_VERSION=3.8.4
+RABBITMQ_VERSION=3.8.5
 RABBITMQ_REVISED_VERSION=1
 
 docker build rabbitMQ/ \

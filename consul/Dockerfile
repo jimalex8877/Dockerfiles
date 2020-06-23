@@ -13,12 +13,11 @@ ARG CONSUL_GPG_KEYS=91A6E7F85D05C65630BEF18951852D87348FFC4C
 RUN set -ex; \
 	\
 	apt-get update; \
-	apt-get install -y unzip iproute2 dumb-init jq moreutils --no-install-recommends; \
-	rm -rf /var/lib/apt/lists/*; \
+	apt-get install -y unzip iproute2 dumb-init jq moreutils aria2 --no-install-recommends; \
 	\
-	wget -e "https_proxy=${HTTPS_PROXY}" -c -q "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip"; \
-	wget -e "https_proxy=${HTTPS_PROXY}" -c -q "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_SHA256SUMS"; \
-	wget -e "https_proxy=${HTTPS_PROXY}" -c -q "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_SHA256SUMS.sig"; \
+	aria2c -l -c -x16 "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip"; \
+	aria2c -l -c -x16 "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_SHA256SUMS"; \
+	aria2c -l -c -x16 "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_SHA256SUMS.sig"; \
 	\
 	export GNUPGHOME="$(mktemp -d)"; \
 	gpg  --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $CONSUL_GPG_KEYS; \
@@ -27,7 +26,8 @@ RUN set -ex; \
 	grep consul_${CONSUL_VERSION}_linux_amd64.zip consul_${CONSUL_VERSION}_SHA256SUMS | sha256sum -c; \
 	\
 	unzip -d /bin consul_${CONSUL_VERSION}_linux_amd64.zip; \
-	rm -rf "$GNUPGHOME" consul_*; \
+	apt-get remove -y aria2; \
+	rm -rf "$GNUPGHOME" consul_* /var/lib/apt/lists/*; \
 	\
 	mkdir -p ${CONSUL_DATA_DIR} ${CONSUL_CONFIG_DIR}; \
 	echo '{"data_dir":"'${CONSUL_DATA_DIR}'"}' > ${CONSUL_CONFIG_DIR}/config.json; \

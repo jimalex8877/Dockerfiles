@@ -3,14 +3,14 @@
 mkdir -p `pwd`/data
 docker run --restart=always -d --net=host --name consul-server \
 	--hostname=consul-server-1 \
-	--add-host=consul-server-2:10.2.239.154 \
-	--add-host=consul-server-3:10.2.239.190 \
+	--add-host=consul-server-2:192.168.1.101 \
+	--add-host=consul-server-3:192.168.1.102 \
 	-v `pwd`/data:/opt/consul/data \
 	\
 	-e BOOTSTRAP_EXPECT=3 \
 	-e CLIENT_ADDR="0.0.0.0" \
-	-e ADVERTISE_ADDR="10.2.239.174" \
-	-e BIND_ADDR="10.2.239.174" \
+	-e ADVERTISE_ADDR="192.168.1.100" \
+	-e BIND_ADDR="192.168.1.100" \
 	-e ENABLE_SCRIPT_CHECKS=true \
 	-e DNS_CONFIG_ENABLE_TRUNCATE=true \
 	-e DNS_CONFIG_ONLY_PASSING=true \
