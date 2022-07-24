@@ -2,8 +2,6 @@ FROM changmingjiang/debian:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 
-# https://github.com/docker-library/postgres/blob/master/12/Dockerfile
-
 ARG PG_MAJOR=$PG_MAJOR
 ARG PG_VERSION=$PG_VERSION
 
@@ -12,10 +10,10 @@ ENV PGDATA=/opt/postgres/data \
 
 RUN set -ex; \
 	\
-	echo "deb http://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt/ buster-pgdg main" >> /etc/apt/sources.list; \
+	echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" >> /etc/apt/sources.list; \
 	#echo "deb-src http://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt/ buster-pgdg main" >> /etc/apt/sources.list; \
 	\
-	wget --quiet -O - https://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt/ACCC4CF8.asc | apt-key add -; \
+	wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add -; \
 	\
 	groupadd -r postgres --gid=999; \
 	useradd -r -g postgres --uid=999 --home-dir=/var/lib/postgresql --shell=/bin/bash postgres; \
@@ -36,5 +34,7 @@ WORKDIR /opt/postgres
 COPY docker-entrypoint.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
+
+STOPSIGNAL SIGINT
 
 CMD ["postgres"]

@@ -1,8 +1,6 @@
-FROM changmingjiang/openjdk-8-jre-openj9:latest
+FROM changmingjiang/openjdk-8-jre:latest
 
 LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
-
-# https://github.com/sonatype/docker-nexus3/blob/master/Dockerfile
 
 ARG NEXUS_VERSION=$NEXUS_VERSION
 ARG NEXUS_DOWNLOAD_URL=http://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz

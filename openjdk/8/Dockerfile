@@ -5,12 +5,10 @@ LABEL maintainer="changming.jiang<changming.jiang@qq.com>"
 ENV JAVA_HOME=/opt/java/openjdk \
 	PATH=${PATH}:/opt/java/openjdk/bin
 
-# https://github.com/AdoptOpenJDK/openjdk-docker/blob/master/8/jre/debian/Dockerfile.hotspot.releases.full
-
 ARG JAVA_VERSION=$JAVA_VERSION
 ARG JAVA_REVISED_VERSION=$JAVA_REVISED_VERSION
 ARG JAVA_SUPERSET=$JAVA_SUPERSET
-ARG JAVA_BINARY_URL=https://mirrors.tuna.tsinghua.edu.cn/AdoptOpenJDK/8/${JAVA_SUPERSET}/x64/linux/OpenJDK8U-${JAVA_SUPERSET}_x64_linux_hotspot_${JAVA_VERSION}${JAVA_REVISED_VERSION}.tar.gz
+ARG JAVA_BINARY_URL=https://github.com/adoptium/temurin8-binaries/releases/download/jdk${JAVA_VERSION}-${JAVA_REVISED_VERSION}/OpenJDK8U-${JAVA_SUPERSET}_x64_linux_hotspot_${JAVA_VERSION}${JAVA_REVISED_VERSION}.tar.gz
 ARG JAVA_BINARY_ESUM=$JAVA_BINARY_ESUM
 
 RUN	set -ex; \
