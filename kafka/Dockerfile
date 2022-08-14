@@ -13,10 +13,10 @@ ARG SCALA_VERSION=$SCALA_VERSION
 RUN set -ex; \
 	\
 	wget -q "https://mirrors.aliyun.com/apache/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz" \
-		-c -q -O kafka.tgz; \
+		--progress=dot:giga -O kafka.tgz; \
 	wget -q "https://www.apache.org/dist/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz.asc" \
-		-c -q -O kafka.tgz.asc; \
-	wget "https://www.apache.org/dist/kafka/KEYS" -c -q; \
+		--progress=dot:giga -O kafka.tgz.asc; \
+	wget "https://www.apache.org/dist/kafka/KEYS" --progress=dot:giga; \
 	export GNUPGHOME="$(mktemp -d)"; \
 	gpg --no-tty --import KEYS; \
 	gpg --batch --verify kafka.tgz.asc kafka.tgz; \

@@ -13,7 +13,7 @@ ENV SONATYPE_DIR=/opt/sonatype \
 RUN set -ex; \
 	\
 	mkdir -p "${SONATYPE_DIR}" "${NEXUS_DATA}"; \
-	wget -c -q -O nexus.tar.gz $NEXUS_DOWNLOAD_URL; \
+	wget --progress=dot:giga -O nexus.tar.gz $NEXUS_DOWNLOAD_URL; \
 	echo "$NEXUS_DOWNLOAD_SHA256_HASH *nexus.tar.gz" | sha256sum -c -; \
 	tar -xzf nexus.tar.gz -C "${SONATYPE_DIR}" && rm -rf nexus.tar.gz; \
 	mv "${SONATYPE_DIR}/nexus-${NEXUS_VERSION}" "${NEXUS_HOME}"; \

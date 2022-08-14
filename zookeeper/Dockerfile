@@ -12,10 +12,10 @@ ARG ZOOKEEPER_VERSION=$ZOOKEEPER_VERSION
 RUN set -ex; \
 	\
 	wget "https://mirrors.aliyun.com/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/apache-zookeeper-$ZOOKEEPER_VERSION-bin.tar.gz" \
-		-c -q -O zookeeper-bin.tar.gz; \
+		--progress=dot:giga -O zookeeper-bin.tar.gz; \
 	wget "https://www.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_VERSION/apache-zookeeper-$ZOOKEEPER_VERSION-bin.tar.gz.asc" \
-		-c -q -O zookeeper-bin.tar.gz.asc; \
-	wget "https://www.apache.org/dist/zookeeper/KEYS" -c -q; \
+		--progress=dot:giga -O zookeeper-bin.tar.gz.asc; \
+	wget "https://www.apache.org/dist/zookeeper/KEYS" --progress=dot:giga; \
 	export GNUPGHOME="$(mktemp -d)"; \
 	gpg --no-tty --import KEYS; \
 	gpg --batch --verify zookeeper-bin.tar.gz.asc zookeeper-bin.tar.gz; \

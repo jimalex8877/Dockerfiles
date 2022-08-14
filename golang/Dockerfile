@@ -19,7 +19,7 @@ RUN set -ex; \
 		make \
 		pkg-config \
 	; \
-	wget -c -q -O go.tgz "https://studygolang.com/dl/golang/go$GOLANG_VERSION.linux-amd64.tar.gz"; \
+	wget --progress=dot:giga -O go.tgz "https://studygolang.com/dl/golang/go$GOLANG_VERSION.linux-amd64.tar.gz"; \
 	echo "${GOLANG_SHA256} *go.tgz" | sha256sum -c -; \
 	tar -C /usr/local -xzf go.tgz; \
 	rm -rf go.tgz /var/lib/apt/lists/*; \

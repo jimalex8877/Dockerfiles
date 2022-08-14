@@ -10,8 +10,8 @@ ENV PGDATA=/opt/postgres/data \
 
 RUN set -ex; \
 	\
-	echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" >> /etc/apt/sources.list; \
-	#echo "deb-src http://mirrors.tuna.tsinghua.edu.cn/postgresql/repos/apt/ buster-pgdg main" >> /etc/apt/sources.list; \
+	echo "deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main" >> /etc/apt/sources.list; \
+	#echo "deb-src http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main" >> /etc/apt/sources.list; \
 	\
 	wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add -; \
 	\
