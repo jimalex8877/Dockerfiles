@@ -2,8 +2,8 @@
 
 # https://github.com/nginxinc/docker-nginx/blob/master/stable/debian/Dockerfile
 
-NGINX_VERSION=1.20.2
-NJS_VERSION=0.7.3
+NGINX_VERSION=1.22.0
+NJS_VERSION=0.7.6
 PKG_RELEASE=1~bullseye
 
 chmod +x nginx/docker-entrypoint.sh
